@@ -12,13 +12,13 @@ if [ "$os_name" = "Darwin" ] ; then
     fi
     pkg_mgr='brew'
 elif [ "$os_name" = "Linux" ] ; then
-    read distro <<<"$os_info"
+    read distro more_info <<<"$os_info"
     if [ "$distro" = "Debian" ] ; then
-        pkg_mgr='apt-get'
+        pkg_mgr='sudo apt-get'
     #elif [ "$distro" = "RedHat" ] ; then
         #    pkg_mgr='yum'
     else
-        echo "Un-expected Linux distribution"
+        echo "Error: Un-expected Linux distribution"
         exit 1
     fi
 else
@@ -51,12 +51,12 @@ $pkg_mgr install grc
 
 $pkg_mgr install ipcalc
 if [ "$os_name" = "Darwin" ] ; then
+    $pkg_mgr install cmake
     $pkg_mgr install ossp-uuid
 else
     $pkg_mgr install uuid
 fi
 $pkg_mgr install kdiff3
-$pkg_mgr install cmake
 
 #autoconf
 #berkeley-db
