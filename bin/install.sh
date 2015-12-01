@@ -99,4 +99,4 @@ if test ! $(which dotfiles); then
     sudo pip install dotfiles
 fi
 
-cd .. && dotfiles -R . -sfl
+cd .. && dotfiles -R . -sf && dotfiles -R . -l
