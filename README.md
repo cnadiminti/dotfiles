@@ -1,6 +1,7 @@
 # Chandra does dotfiles
 
 These dotfiles are to personalize my system. They have been evolving along with my software development skills.
+
 I have been using them so far on Ubuntu and Mac OS X.
 
 ## Install
