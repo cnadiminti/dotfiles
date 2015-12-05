@@ -8,7 +8,7 @@ I have been using them so far on Ubuntu and Mac OS X.
 ```
 git clone https://github.com/cnadiminti/dotfiles.git
 cd dotfiles/bin
-./install.sh
+./install_dotfiles.sh
 ```
 
 ## References
