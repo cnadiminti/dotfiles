@@ -1,10 +1,10 @@
+cask_args appdir: '/Applications'
+
 tap 'caskroom/cask'
 tap 'homebrew/bundle'
 
-brew 'libyaml'
-brew 'openssl'
+brew 'ant'
 brew 'ansible'
-brew 'readline'
 brew 'bash'
 brew 'cmake'
 brew 'coreutils'
@@ -12,29 +12,35 @@ brew 'coreutils'
 #MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 brew 'dos2unix'
-brew 'gdbm'
 brew 'grc'
 brew 'ipcalc'
-brew 'qt'
 brew 'kdiff3'
 brew 'ossp-uuid'
-brew 'sqlite'
+
 brew 'python'
+brew 'ruby'
 brew 'wget'
 brew 'git'
+brew 'plantuml'
 
 brew 'caskroom/cask/brew-cask'
+
+cask 'flux'
 
 cask 'virtualbox'
 cask 'vagrant'
 cask 'docker'
+
+cask 'filezilla'
+#cask 'yed'
 
 cask 'firefox'
 cask 'google-chrome'
 
 cask 'java'
 cask 'eclipse-ide'
-
+brew 'emacs', args: ['with-cocoa', 'with-gnutls']
+cask 'skype'
 
 #autoconf
 #berkeley-db
@@ -65,8 +71,6 @@ cask 'eclipse-ide'
 #rbenv-bundler-ruby-version
 #rpm
 #ruby-build
-#sqlite
 #ssh-copy-id
 #unixodbc
 #wxmac
-#xz

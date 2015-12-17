@@ -8,7 +8,8 @@ read os_name os_info <<< `sh ./os_info.sh`
 if [ "$os_name" = "Darwin" ] ; then
     brew update && brew upgrade
     brew bundle --global
-    brew bundle cleanup --global
+    brew linkapps emacs kdiff3
+    #brew bundle cleanup --global
     brew cleanup && brew cask cleanup
 elif [ "$os_name" = "Linux" ] ; then
     read distro more_info <<<"$os_info"
@@ -25,3 +26,6 @@ else
     echo "Error: Un-expected OS"
     exit 1
 fi
+
+./install_eclipse_plugins.sh
+

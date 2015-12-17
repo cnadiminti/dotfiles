@@ -4,7 +4,9 @@ alias h='history'
 alias x='exit'
 alias pyclean='find . -name "*.pyc" -exec rm {} \;'
 alias trimright='sed -ie "s/ \{1,\}$//"'
-alias plantuml='java -jar ~/Downloads/plantuml.jar'
+if [ "`which plantuml`" == '' ]; then
+    alias plantuml='java -jar ~/Downloads/plantuml.jar'
+fi
 
 ###############################
 # Git Repos: VPNaaS-NCS-ESC-CSR

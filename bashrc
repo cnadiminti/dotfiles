@@ -124,3 +124,7 @@ fi
 
 # GRC
 #source "`brew --prefix`/etc/grc.bashrc"
+
+# Eclipse
+PATH=$PATH:/Applications/Eclipse.app/Contents/MacOS
+
