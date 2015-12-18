@@ -14,7 +14,13 @@ if [ "$os_name" = "Darwin" ] ; then
 elif [ "$os_name" = "Linux" ] ; then
     read distro more_info <<<"$os_info"
     if [ "$distro" = "Debian" ] ; then
-        sudo apt-get install grc wget
+        sudo apt-get install grc wget -y
+        if [ "`which eclipse`" == "" ]; then
+        sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y
+        sudo apt-get update
+        sudo apt-get install ubuntu-make -y
+        umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse
+        fi
         # TODO: update the list
     #elif [ "$distro" = "RedHat" ] ; then
         #    pkg_mgr='yum'
@@ -28,4 +34,3 @@ else
 fi
 
 ./install_eclipse_plugins.sh
-

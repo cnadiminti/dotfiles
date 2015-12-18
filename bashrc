@@ -126,5 +126,5 @@ fi
 #source "`brew --prefix`/etc/grc.bashrc"
 
 # Eclipse
-PATH=$PATH:/Applications/Eclipse.app/Contents/MacOS
+PATH=$PATH:/Applications/Eclipse.app/Contents/MacOS:${HOME}/.local/share/umake/ide/eclipse
 
