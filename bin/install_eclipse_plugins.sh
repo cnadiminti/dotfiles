@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 eclipse \
 -clean -purgeHistory \

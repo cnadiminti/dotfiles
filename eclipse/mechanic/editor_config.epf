@@ -1,6 +1,7 @@
 # @title Set Editor configs
 # @description Sets dark theme, spacesForTabs, line number, etc ...
 # @task_type RECONCILE
+
 file_export_version=3.0
 
 /instance/org.eclipse.e4.ui.css.swt.theme/themeid=org.eclipse.e4.ui.css.theme.e4_dark

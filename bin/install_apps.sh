@@ -16,10 +16,10 @@ elif [ "$os_name" = "Linux" ] ; then
     if [ "$distro" = "Debian" ] ; then
         sudo apt-get install grc wget -y
         if [ "`which eclipse`" == "" ]; then
-        sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y
-        sudo apt-get update
-        sudo apt-get install ubuntu-make -y
-        umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse
+            sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y
+            sudo apt-get update
+            sudo apt-get install ubuntu-make -y
+            umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse
         fi
         # TODO: update the list
     #elif [ "$distro" = "RedHat" ] ; then
