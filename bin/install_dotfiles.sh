@@ -14,8 +14,9 @@ if [ "$os_name" = "Darwin" ] ; then
 elif [ "$os_name" = "Linux" ] ; then
     read distro more_info <<<"$os_info"
     if [ "$distro" = "Debian" ] ; then
-        sudo apt-get install python-pip
+        sudo apt-get install python-pip -y
     elif [ "$distro" = "RedHat" ] ; then
+        sudo yum -y install epel-release
         sudo yum -y install python-pip
     else
         echo "Error: Un-expected Linux distribution"

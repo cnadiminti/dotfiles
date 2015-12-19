@@ -15,15 +15,18 @@ elif [ "$os_name" = "Linux" ] ; then
     read distro more_info <<<"$os_info"
     if [ "$distro" = "Debian" ] ; then
         sudo apt-get install grc wget -y
+        sudo apt-get install fonts-inconsolata -y
+        # TODO: update the list
         if [ "`which eclipse`" == "" ]; then
             sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y
             sudo apt-get update
             sudo apt-get install ubuntu-make -y
             umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse
         fi
+    elif [ "$distro" = "RedHat" ] ; then
+        sudo yum -y install grc wget
+        sudo yum -y install levien-inconsolata-fonts
         # TODO: update the list
-    #elif [ "$distro" = "RedHat" ] ; then
-        #    pkg_mgr='yum'
     else
         echo "Error: Un-expected Linux distribution"
         exit 1
