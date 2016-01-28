@@ -37,6 +37,7 @@ brew 'emacs', args: ['with-cocoa', 'with-gnutls']
 # Browsers
 cask 'firefox'
 cask 'google-chrome'
+cask 'google-photos-backup'
 
 # Apps
 cask 'filezilla'
