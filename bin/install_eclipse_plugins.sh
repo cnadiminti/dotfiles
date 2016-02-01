@@ -3,6 +3,7 @@
 eclipse \
 -clean -purgeHistory \
 -application org.eclipse.equinox.p2.director \
+-profileProperties org.eclipse.update.install.features=true \
 -noSplash -repository \
 http://download.eclipse.org/releases/mars/,\
 http://pydev.org/updates/,\
@@ -20,6 +21,10 @@ org.dadacoalition.yedit.feature.feature.group,\
 markdown.editor.feature.feature.group,\
 code.satyagraha.gfm.viewer.feature.feature.group,\
 net.bcsw.yang_editor.feature.feature.group,\
-com.google.eclipse.mechanic.feature.group
+com.google.eclipse.mechanic.feature.group,\
+org.eclipse.wst.xml_ui.feature.feature.group,\
+org.eclipse.dltk.tcl.feature.group,\
+net.sourceforge.plantuml.feature.feature.group,\
+org.eclipse.linuxtools.rpm.feature.group,\
+net.bcsw.yang_editor.feature.feature.group
 
-# net.sourceforge.plantuml.feature.feature.group,

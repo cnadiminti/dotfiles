@@ -128,3 +128,6 @@ fi
 # Eclipse
 PATH=$PATH:/Applications/Eclipse.app/Contents/MacOS:${HOME}/.local/share/umake/ide/eclipse
 
+if [ "`which brew`" != "" ] && [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi

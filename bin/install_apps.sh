@@ -14,7 +14,7 @@ if [ "$os_name" = "Darwin" ] ; then
 elif [ "$os_name" = "Linux" ] ; then
     read distro more_info <<<"$os_info"
     if [ "$distro" = "Debian" ] ; then
-        sudo apt-get install grc wget bash-completion -y
+        sudo apt-get install grc wget git bash-completion -y
         sudo apt-get install fonts-inconsolata -y
         # TODO: update the list
         if [ "`which eclipse`" == "" ]; then
@@ -24,7 +24,7 @@ elif [ "$os_name" = "Linux" ] ; then
             umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse
         fi
     elif [ "$distro" = "RedHat" ] ; then
-        sudo yum -y install grc wget bash-completion
+        sudo yum -y install grc wget git bash-completion
         sudo yum -y install levien-inconsolata-fonts
         # TODO: update the list
     else

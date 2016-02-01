@@ -8,6 +8,7 @@ cask_args appdir: '/Applications'
 
 # Utils
 brew 'ant'
+brew 'readline'
 brew 'bash'
 brew 'cmake'
 brew 'coreutils'
@@ -21,6 +22,8 @@ brew 'tree'
 brew 'pstree'
 brew 'wget'
 brew 'git'
+brew 'git-review'
+brew 'bash-completion'
 brew 'plantuml'
 #cask 'yed'
 
@@ -33,6 +36,7 @@ cask 'java'
 # IDEs
 cask 'eclipse-ide'
 brew 'emacs', args: ['with-cocoa', 'with-gnutls']
+cask 'iterm2'
 
 # Browsers
 cask 'firefox'

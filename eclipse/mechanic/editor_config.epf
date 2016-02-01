@@ -4,7 +4,7 @@
 
 file_export_version=3.0
 
-/instance/org.eclipse.ui.workbench/org.eclipse.jface.textfont=1|Inconsolata|16.0|0|COCOA|1|Inconsolata;
+/instance/org.eclipse.ui.workbench/org.eclipse.jface.textfont=1|Inconsolata|14.0|0|COCOA|1|Inconsolata;
 
 /instance/org.eclipse.e4.ui.css.swt.theme/themeid=org.eclipse.e4.ui.css.theme.e4_dark
 /instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.UncommittedChangeForegroundColor=114,157,186
