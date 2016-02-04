@@ -21,11 +21,13 @@ brew 'ossp-uuid'
 brew 'tree'
 brew 'pstree'
 brew 'wget'
+brew 'ssh-copy-id'
 brew 'git'
 brew 'git-review'
 brew 'bash-completion'
 brew 'plantuml'
 #cask 'yed'
+brew 'terminal-notifier'
 
 # Languages
 brew 'ansible'
@@ -45,10 +47,12 @@ cask 'google-photos-backup'
 
 # Apps
 cask 'filezilla'
+cask 'vnc-viewer'
 
 cask 'virtualbox'
 cask 'vagrant'
-cask 'docker'
+cask 'dockertoolbox'
+brew 'rancher-compose'
 
 brew 'kdiff3'
 cask 'flux'
