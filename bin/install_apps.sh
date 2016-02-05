@@ -16,6 +16,7 @@ elif [ "$os_name" = "Linux" ] ; then
     if [ "$distro" = "Debian" ] ; then
         sudo apt-get install grc wget git bash-completion -y
         sudo apt-get install fonts-inconsolata -y
+        sudo apt-get install libnotify-bin -y
         # TODO: update the list
         if [ "`which eclipse`" == "" ]; then
             sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y
@@ -26,6 +27,7 @@ elif [ "$os_name" = "Linux" ] ; then
     elif [ "$distro" = "RedHat" ] ; then
         sudo yum -y install grc wget git bash-completion
         sudo yum -y install levien-inconsolata-fonts
+        sudo yum -y install libnotify
         # TODO: update the list
     else
         echo "Error: Un-expected Linux distribution"
