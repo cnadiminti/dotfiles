@@ -1,0 +1,8 @@
+[dotfiles]
+repository = ~/git/dotfiles/dotfiles
+ignore = [
+    '.git',
+    '.gitignore',
+    'iterm2_profile'
+    ]
+packages = ['eclipse']
