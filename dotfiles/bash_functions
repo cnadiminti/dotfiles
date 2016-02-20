@@ -9,20 +9,9 @@ function clone-bazaar-branches {
     bzr branch lp:~ubuntu-server-dev/neutron/juno bzr-ubuntu-neutron-juno
 }
 
-# GIT CLONE helpers
-function clone-cisco-git-repos () {
-    for arg in $*; do
-        IFS=':' read -a myarray <<< "$arg"
-        rep=${myarray[0]}
-        if [ "${myarray[1]}" == "" ]; then
-            branch='master'
-        else
-            branch=${myarray[1]}
-        fi
-        git clone ssh://${USER}@cis-gerrit.cisco.com:29418/$rep -b $branch
-        cd $rep
-        git remote add gerrit ssh://${USER}@cis-gerrit.cisco.com:29418/$rep
-        gitdir=$(git rev-parse --git-dir); scp -c aes128-cbc -p -P 29418 ${USER}@cis-gerrit.cisco.com:hooks/commit-msg ${gitdir}/hooks/
-        cd -
-    done
+# Usage example: clone-github-org-repos sensu
+function clone-github-org-repos {
+    mkdir -p $1
+    cd $org
+    curl -s https://api.github.com/orgs/$1/repos | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| %x[git clone #{repo["clone_url"]} ]}'
 }
