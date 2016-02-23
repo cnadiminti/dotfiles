@@ -1,0 +1,9 @@
+# @title Set ShellEd configs
+# @description Sets Ruby configuration
+# @task_type RECONCILE
+
+file_export_version=3.0
+
+/instance/org.eclipse.dltk.ruby.ui/DLTK_default=136,136,136
+/instance/org.eclipse.dltk.ruby.ui/DLTK_string=255,191,38
+

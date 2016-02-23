@@ -1,14 +1,10 @@
 # @title Set ShellEd configs
-# @description Sets the ...
+# @description Set ShellEditor configuration
 # @task_type RECONCILE
 
 file_export_version=3.0
 
-#/instance/net.sourceforge.shelled.ui/useQuickDiffPrefPage=true
-#/instance/net.sourceforge.shelled.ui/sourceHoverBackgroundColor=250,251,197
-#/instance/net.sourceforge.shelled.ui/useAnnotationsPrefPage=true
 /instance/net.sourceforge.shelled.ui/formatter.tabulation.char=space
-#/instance/net.sourceforge.shelled.ui/sourceHoverBackgroundColor.SystemDefault=true
-
 /instance/net.sourceforge.shelled.ui/DLTK_default=136,136,136
 /instance/net.sourceforge.shelled.ui/DLTK_argument=255,191,38
+
