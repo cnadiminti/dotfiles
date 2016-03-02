@@ -17,7 +17,7 @@ elif [ "$os_name" = "Linux" ] ; then
         sudo apt-get install grc wget git bash-completion -y
         sudo apt-get install fonts-inconsolata -y
         sudo apt-get install libnotify-bin -y
-        sudo apt-get install ruby-full -y
+        sudo apt-get install gcc -y
         # TODO: update the list
         if [ "`which eclipse`" == "" ]; then
             sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y
@@ -29,14 +29,24 @@ elif [ "$os_name" = "Linux" ] ; then
         sudo yum -y install grc wget git bash-completion
         sudo yum -y install levien-inconsolata-fonts
         sudo yum -y install libnotify
-        sudo yum -y install ruby
+        sudo yum -y install gcc
         # TODO: update the list
     else
-        echo "Error: Un-expected Linux distribution"
+        echo 'Error: Un-expected Linux distribution'
         exit 1
     fi
+    # Install Ruby from source
+    if [ "`which ruby`" = "" ] || [ "`ruby -e 'puts RUBY_VERSION'`" != "2.3.0" ]; then
+        wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.gz \
+            && tar zxf ruby-2.3.0.tar.gz \
+            && cd ruby-2.3.0 \
+            && ./configure \
+            && make \
+            && sudo make install \
+            && cd .. && rm -rf ruby-2.3.0.tar.gz ruby-2.3.0
+    fi
 else
-    echo "Error: Un-expected OS"
+    echo 'Error: Un-expected OS'
     exit 1
 fi
 
