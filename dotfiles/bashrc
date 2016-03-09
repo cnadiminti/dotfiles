@@ -143,3 +143,7 @@ fi
 if [ -f ~/.bash_personal ]; then
     . ~/.bash_personal
 fi
+
+export GOPATH=$HOME/goprojects/
+export PATH=/usr/local/go/bin:$GOPATH/bin:$PATH
+
