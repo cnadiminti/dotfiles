@@ -1,3 +1,79 @@
+##############################################################################
+# Shamelessly copied from https://github.com/github/gitignore/blob/master/Global/Linux.gitignore
+##############################################################################
+*~
+
+# temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+##############################################################################
+# Shamelessly copied from https://raw.githubusercontent.com/github/gitignore/master/Global/Eclipse.gitignore
+##############################################################################
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Eclipse Core
+.project
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+##############################################################################
+# Shamelessly copied from https://github.com/github/gitignore/blob/master/Global/Vagrant.gitignore
+##############################################################################
+.vagrant/
+
+##############################################################################
+# Few more
+##############################################################################
 # Folder view configuration files
 .DS_Store
 Desktop.ini
@@ -8,8 +84,6 @@ Thumbs.db
 
 # Backup files
 *.swp
-*~
-
 
 # Files that might appear on external disks
 .Spotlight-V100
@@ -18,6 +92,5 @@ Thumbs.db
 # Compiled Python files
 *.pyc
 
-# Others
-.vagrant
+# VirtualEnv
 .venv

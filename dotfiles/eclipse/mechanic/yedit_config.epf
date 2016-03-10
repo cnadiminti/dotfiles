@@ -1,0 +1,8 @@
+# @title Set YEdit configs
+# @description Set YEdit configuration
+# @task_type RECONCILE
+
+file_export_version=3.0
+
+/instance/org.dadacoalition.yedit/colorDefaultPreference=136,136,136
+/instance/org.dadacoalition.yedit/colorScalarPreference=136,136,136
