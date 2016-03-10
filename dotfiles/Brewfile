@@ -2,6 +2,7 @@
 tap 'homebrew/bundle'
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
+tap 'homebrew/completions'
 
 brew 'caskroom/cask/brew-cask'
 cask_args appdir: '/Applications'
@@ -20,10 +21,13 @@ brew 'ipcalc'
 brew 'ossp-uuid'
 brew 'tree'
 brew 'pstree'
+brew 'openssl'
 brew 'wget'
 brew 'ssh-copy-id'
 brew 'git'
 brew 'git-review'
+cask 'github-desktop'
+brew 'bzr'
 brew 'bash-completion'
 brew 'plantuml'
 #cask 'yed'
@@ -31,9 +35,10 @@ brew 'terminal-notifier'
 
 # Languages
 brew 'ansible'
+brew 'go'
+cask 'java'
 brew 'python'
 brew 'ruby'
-cask 'java'
 
 # IDEs
 cask 'eclipse-ide'
@@ -51,6 +56,8 @@ cask 'vnc-viewer'
 
 cask 'virtualbox'
 cask 'vagrant'
+brew 'vagrant-completion'
+#cask 'vagrant-manager'
 cask 'dockertoolbox'
 brew 'rancher-compose'
 
