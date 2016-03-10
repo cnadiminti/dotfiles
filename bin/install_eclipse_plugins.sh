@@ -14,7 +14,8 @@ http://sourceforge.net/projects/shelled/files/shelled/update,\
 http://www.nodeclipse.org/updates/markdown/,\
 https://raw.github.com/satyagraha/gfm_viewer/master/p2-composite/,\
 http://workspacemechanic.eclipselabs.org.codespot.com/git.update/mechanic/,\
-http://bcsw.net/plugins/ \
+http://bcsw.net/plugins/,\
+http://goclipse.github.io/releases/ \
     -installIU \
 org.python.pydev.feature.feature.group,\
 net.sourceforge.shelled.feature.group,\
@@ -28,4 +29,5 @@ org.eclipse.dltk.tcl.feature.group,\
 net.sourceforge.plantuml.feature.feature.group,\
 org.eclipse.linuxtools.rpm.feature.group,\
 net.bcsw.yang_editor.feature.feature.group,\
-org.eclipse.dltk.ruby.feature.group
+org.eclipse.dltk.ruby.feature.group,\
+goclipse_feature.feature.group

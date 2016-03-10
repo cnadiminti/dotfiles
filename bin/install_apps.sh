@@ -18,6 +18,7 @@ elif [ "$os_name" = "Linux" ] ; then
         sudo apt-get install fonts-inconsolata -y
         sudo apt-get install libnotify-bin -y
         sudo apt-get install gcc -y
+        sudo apt-get install -y golang
         # TODO: update the list
         if [ "`which eclipse`" == "" ]; then
             sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y
@@ -30,6 +31,7 @@ elif [ "$os_name" = "Linux" ] ; then
         sudo yum -y install levien-inconsolata-fonts
         sudo yum -y install libnotify
         sudo yum -y install gcc
+        sudo yum -y install golang
         # TODO: update the list
     else
         echo 'Error: Un-expected Linux distribution'
@@ -49,5 +51,10 @@ else
     echo 'Error: Un-expected OS'
     exit 1
 fi
+
+# gocode and oracle for GO programming 
+#go get -u github.com/nsf/gocode
+#go get -u golang.org/x/tools/cmd/...
+#go get -u github.com/golang/lint/golint
 
 ./install_eclipse_plugins.sh
