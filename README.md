@@ -1,3 +1,5 @@
+[![Build Status](https://drone.io/github.com/cnadiminti/dotfiles/status.png)](https://drone.io/github.com/cnadiminti/dotfiles/latest)
+
 # Chandra does dotfiles
 
 These dotfiles are to personalize my system. They have been evolving along with my software development skills.
@@ -7,14 +9,14 @@ I have been using them so far on Ubuntu and Mac OS X.
 ## Install
 
 To install just dotfiles:
-```
+```sh
 git clone https://github.com/cnadiminti/dotfiles.git
 cd dotfiles/bin
 ./install_dotfiles.sh
 ```
 
 To install dotfiles and more:
-```
+```sh
 git clone https://github.com/cnadiminti/dotfiles.git
 cd dotfiles/bin
 ./install.sh
