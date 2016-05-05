@@ -16,7 +16,6 @@
 # Shamelessly copied from https://raw.githubusercontent.com/github/gitignore/master/Global/Eclipse.gitignore
 ##############################################################################
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
