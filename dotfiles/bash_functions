@@ -110,3 +110,24 @@ function clone-bazaar-branches {
     # bzr branch lp:~cisco-openstack/neutron/juno?? bzr-cisco-neutron-juno
     bzr branch lp:~ubuntu-server-dev/neutron/juno bzr-ubuntu-neutron-juno
 }
+
+function clone-bitbucket-proj {
+    proj=$1
+    if [ -z $proj ] ; then
+          print-info 'Usage: clone-bitbucket-proj [PROJECT-NAME]'
+          return
+    fi
+    if [ -z "$BITBUCKET_PASS" ]; then
+        echo -n "Please enter your Bitbucket Password: "
+        read -sr BITBUCKET_PASS
+        echo ''
+    fi
+    mkdir -p $proj
+    json=`curl -sk -u ${BITBUCKET_USER}:${BITBUCKET_PASS} -H "Content-Type: application/json" ${BITBUCKET_HOST}/rest/api/1.0/projects/$proj/repos`
+    for repo in `echo $json | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'`; do
+        echo -n $repo...
+        error=`git -C $proj clone -q $repo 2>&1 >/dev/null` \
+               && print-success \
+               || (print-error $error)
+    done
+}
