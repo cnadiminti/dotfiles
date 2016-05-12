@@ -36,29 +36,16 @@ function print-error {
     echo -e "\033[01;31m ${UTF_8_HEAVY_BALLOT_X}   $*\033[00m"
 }
 
-function clone-bazaar-branches {
-    bzr branch lp:~cisco-openstack/neutron/cis-havana bzr-cisco-neutron-havana
-    bzr branch lp:~ubuntu-server-dev/neutron/havana bzr-ubuntu-neutron-havana
-
-    bzr branch lp:~cisco-openstack/neutron/icehouse bzr-cisco-neutron-icehouse
-    bzr branch lp:~ubuntu-server-dev/neutron/icehouse bzr-ubuntu-neutron-icehouse
-
-    # bzr branch lp:~cisco-openstack/neutron/juno?? bzr-cisco-neutron-juno
-    bzr branch lp:~ubuntu-server-dev/neutron/juno bzr-ubuntu-neutron-juno
-}
-
-# Usage example: clone-github-org-repos sensu
+# Usage example: clone-github-user-repos cnadiminti
 function clone-github-user-repos {
     user=${1-cnadiminti}
     mkdir -p $user
-    cd $user
-    for repo in `curl -ks https://api.github.com/users/$user/repos | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
+    for repo in `curl -ks https://api.github.com/users/$user/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
         echo -n $repo...
-        error=`git clone -q $repo 2>&1 >/dev/null` \
+        error=`git -C $user clone -q $repo 2>&1 >/dev/null` \
                && print-success \
                || (print-error $error)
     done
-    cd - >/dev/null
 }
 
 # Usage example: clone-github-org-repos sensu
@@ -69,32 +56,57 @@ function clone-github-org-repos {
           return
     fi
     mkdir -p $org
-    cd $org
-    for repo in `curl -ks https://api.github.com/orgs/$org/repos | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
+    for repo in `curl -ks https://api.github.com/orgs/$org/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
         echo -n $repo...
-        error=`git clone -q $repo 2>&1 >/dev/null` \
+        error=`git -C $org clone -q $repo 2>&1 >/dev/null` \
                && print-success \
                || (print-error $error)
     done
-    cd - >/dev/null
 }
 
 function git-project-fetch {
     for f in `ls $1`; do
-        echo -n $1/${f}...
+        echo -n "$1/${f} ..."
         if ! [ -d $1/$f ] ; then
             print-warning 'Not directory'
             continue
         fi
-        cd $1/$f
-        warn=`git rev-parse  2>&1 >/dev/null`
+        warn=`git -C $1/$f rev-parse  2>&1 >/dev/null`
         if [ $? -eq 0 ]; then
-            error=`git fetch 2>&1 >/dev/null` \
+            error=`git -C $1/$f fetch 2>&1 >/dev/null` \
                 && print-success \
                 || (print-error $error)
         else
             print-warning $warn
         fi
-        cd - >/dev/null
     done
+}
+
+function git-project-pull {
+    for f in `ls $1`; do
+        echo -n "$1/${f} ..."
+        if ! [ -d $1/$f ] ; then
+            print-warning 'Not directory'
+            continue
+        fi
+        warn=`git -C $1/$f rev-parse  2>&1 >/dev/null`
+        if [ $? -eq 0 ]; then
+            error=`git -C $1/$f pull 2>&1 >/dev/null` \
+                && print-success \
+                || (print-error $error)
+        else
+            print-warning $warn
+        fi
+    done
+}
+
+function clone-bazaar-branches {
+    bzr branch lp:~cisco-openstack/neutron/cis-havana bzr-cisco-neutron-havana
+    bzr branch lp:~ubuntu-server-dev/neutron/havana bzr-ubuntu-neutron-havana
+
+    bzr branch lp:~cisco-openstack/neutron/icehouse bzr-cisco-neutron-icehouse
+    bzr branch lp:~ubuntu-server-dev/neutron/icehouse bzr-ubuntu-neutron-icehouse
+
+    # bzr branch lp:~cisco-openstack/neutron/juno?? bzr-cisco-neutron-juno
+    bzr branch lp:~ubuntu-server-dev/neutron/juno bzr-ubuntu-neutron-juno
 }
