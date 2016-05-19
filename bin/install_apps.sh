@@ -2,7 +2,11 @@
 
 set -e
 
-read os_name os_info <<< `sh ./os_info.sh`
+export DOTFILES_BIN_DIR=`dirname $0`
+export REPO_ROOT_DIR=`dirname $0`/..
+
+. $REPO_ROOT_DIR/dotfiles/bash_functions
+read os_name os_info <<< `sh $DOTFILES_BIN_DIR/os_info.sh`
 
 # Install all the basic tools and apps
 if [ "$os_name" = "Darwin" ] ; then
@@ -14,24 +18,24 @@ if [ "$os_name" = "Darwin" ] ; then
 elif [ "$os_name" = "Linux" ] ; then
     read distro more_info <<<"$os_info"
     if [ "$distro" = "Debian" ] ; then
-        sudo apt-get install grc wget git bash-completion -y
-        sudo apt-get install fonts-inconsolata -y
-        sudo apt-get install libnotify-bin -y
-        sudo apt-get install gcc -y
-        sudo apt-get install -y golang
+        execute-command 'sudo apt-get install grc wget git bash-completion -y'
+        execute-command 'sudo apt-get install fonts-inconsolata -y'
+        execute-command 'sudo apt-get install libnotify-bin -y'
+        execute-command 'sudo apt-get install gcc -y'
+        execute-command 'sudo apt-get install -y golang'
         # TODO: update the list
         if [ "`which eclipse`" == "" ]; then
-            sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y
-            sudo apt-get update
-            sudo apt-get install ubuntu-make -y
-            umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse
+            execute-command 'sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y'
+            execute-command 'sudo apt-get update'
+            execute-command 'sudo apt-get install ubuntu-make -y'
+            execute-command "umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse"
         fi
     elif [ "$distro" = "RedHat" ] ; then
-        sudo yum -y install grc wget git bash-completion
-        sudo yum -y install levien-inconsolata-fonts
-        sudo yum -y install libnotify
-        sudo yum -y install gcc
-        sudo yum -y install golang
+        execute-command 'sudo yum -y install grc wget git bash-completion'
+        execute-command 'sudo yum -y install levien-inconsolata-fonts'
+        execute-command 'sudo yum -y install libnotify'
+        execute-command 'sudo yum -y install gcc'
+        execute-command 'sudo yum -y install golang'
         # TODO: update the list
     else
         echo 'Error: Un-expected Linux distribution'
@@ -57,4 +61,4 @@ fi
 #go get -u golang.org/x/tools/cmd/...
 #go get -u github.com/golang/lint/golint
 
-./install_eclipse_plugins.sh
+. ${DOTFILES_BIN_DIR}/install_eclipse_plugins.sh

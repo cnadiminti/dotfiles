@@ -2,7 +2,11 @@
 
 set -e
 
-read os_name os_info <<< `sh ./os_info.sh`
+export DOTFILES_BIN_DIR=`dirname $0`
+export REPO_ROOT_DIR=`dirname $0`/..
+
+. $REPO_ROOT_DIR/dotfiles/bash_functions
+read os_name os_info <<< `sh $DOTFILES_BIN_DIR/os_info.sh`
 
 # Install pip
 if [ "$os_name" = "Darwin" ] ; then
@@ -14,10 +18,10 @@ if [ "$os_name" = "Darwin" ] ; then
 elif [ "$os_name" = "Linux" ] ; then
     read distro more_info <<<"$os_info"
     if [ "$distro" = "Debian" ] ; then
-        sudo apt-get install python-pip -y
+        execute-command 'sudo apt-get install python-pip -y'
     elif [ "$distro" = "RedHat" ] ; then
-        sudo yum -y install epel-release
-        sudo yum -y install python-pip
+        execute-command 'sudo yum -y install epel-release'
+        execute-command 'sudo yum -y install python-pip'
     else
         echo "Error: Un-expected Linux distribution"
         exit 1
@@ -28,9 +32,8 @@ else
 fi
 
 if test ! $(which dotfiles); then
-    echo "Installing dotfiles using pip..."
-    sudo pip install dotfiles
+    execute-command 'sudo pip install dotfiles' "Installing dotfiles using pip"
 fi
 
-dotfiles -R `pwd`/../dotfiles -sf
-dotfiles -R `pwd`/../dotfiles -l
+dotfiles -R $REPO_ROOT_DIR/dotfiles -sf
+dotfiles -R $REPO_ROOT_DIR/dotfiles -l
