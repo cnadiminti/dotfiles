@@ -55,12 +55,12 @@ features[org.dadacoalition.yedit.feature.feature.group]='http://dadacoalition.or
 # Atlassian JIRA
 #features[com.atlassian.connector.eclipse.feature.group]='http://update.atlassian.com/atlassian-eclipse-plugin/rest/e3.7,http://download.eclipse.org/mylyn/releases/latest'
 
-# features[org.eclipse.oomph.workingsets.feature.group]=''
-# features[org.eclipse.oomph.preferences.feature.group]=''
-# features[org.eclipse.oomph.setup.sdk.feature.group]=''
-# features[org.eclipse.oomph.projectconfig.feature.group]=''
-# features[org.eclipse.oomph.targlets.feature.group]=''
-# features[org.eclipse.oomph.version.feature.group]=''
+features[org.eclipse.oomph.workingsets.feature.group]=''
+features[org.eclipse.oomph.preferences.feature.group]=''
+features[org.eclipse.oomph.setup.sdk.feature.group]=''
+features[org.eclipse.oomph.projectconfig.feature.group]=''
+features[org.eclipse.oomph.targlets.feature.group]=''
+features[org.eclipse.oomph.version.feature.group]=''
 
 for key in "${!features[@]}"; do
     cmd="eclipse $plugin_install_options"
