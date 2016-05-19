@@ -45,7 +45,7 @@ function execute-command {
     usage="execute-command CMD [BANNER] [error/warning]"
     [ -z "$1" ] && echo $usage && return
     cmd=$1
-    banner=${2-1}
+    banner=${2-$1}
     reporter=${3-error}
     [ $reporter != "error" ] \
         && [ $reporter != "warning" ] \
