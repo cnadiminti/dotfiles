@@ -2,6 +2,7 @@ UTF_8_HEAVY_BALLOT_X='\xe2\x9c\x98'
 UTF_8_HEAVY_CHECK_MARK='\xe2\x9c\x94'
 UTF_8_HEAVY_WARNING_SIGN='\xe2\x9a\xa0'
 UTF_8_INFORMATION_SOURCE='\xe2\x84\xb9'
+UTF_8_BLACK_RIGHT_POINTING_INDEX='\xE2\x98\x9B'
 
 function print-available-terminal-colors {
     T='gYw'   # The test text
@@ -20,6 +21,10 @@ function print-available-terminal-colors {
     echo
 }
 
+function print-task {
+    echo -e "${UTF_8_BLACK_RIGHT_POINTING_INDEX} $1"
+}
+
 function print-success {
     echo -e "\033[01;32m ${UTF_8_HEAVY_CHECK_MARK}   $*\033[00m"
 }
@@ -36,15 +41,33 @@ function print-error {
     echo -e "\033[01;31m ${UTF_8_HEAVY_BALLOT_X}   $*\033[00m"
 }
 
+function execute-command {
+    usage="execute-command CMD [BANNER] [error/warning]"
+    [ -z "$1" ] && echo $usage && return
+    cmd=$1
+    banner=${2-1}
+    reporter=${3-error}
+    [ $reporter != "error" ] \
+        && [ $reporter != "warning" ] \
+        && echo $usage \
+        && return
+    echo -n "${banner} ..."
+    error=`$cmd 2>&1 >/dev/null`
+    status=$?
+    if [ $status -eq 0 ]; then
+        print-success
+    else
+        print-${reporter} $error
+    fi
+    return $status
+}
+
 # Usage example: clone-github-user-repos cnadiminti
 function clone-github-user-repos {
     user=${1-cnadiminti}
-    mkdir -p $user
+    execute-command "mkdir -p $user"
     for repo in `curl -ks https://api.github.com/users/$user/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
-        echo -n $repo...
-        error=`git -C $user clone -q $repo 2>&1 >/dev/null` \
-               && print-success \
-               || (print-error $error)
+        execute-command "git -C $user clone -q $repo"
     done
 }
 
@@ -55,47 +78,34 @@ function clone-github-org-repos {
           print-info 'Usage: clone-github-org-repos [ORG-NAME]'
           return
     fi
-    mkdir -p $org
+    execute-command "mkdir -p $org"
     for repo in `curl -ks https://api.github.com/orgs/$org/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
-        echo -n $repo...
-        error=`git -C $org clone -q $repo 2>&1 >/dev/null` \
-               && print-success \
-               || (print-error $error)
+        execute-command "git -C $org clone -q $repo"
     done
 }
 
 function git-project-fetch {
     for f in `ls $1`; do
-        echo -n "$1/${f} ..."
-        if ! [ -d $1/$f ] ; then
-            print-warning 'Not directory'
-            continue
-        fi
-        warn=`git -C $1/$f rev-parse  2>&1 >/dev/null`
+        print-task "$1/$f"
+        execute-command "[ -d $1/$f ]" "  Is Directory?" "warning"
         if [ $? -eq 0 ]; then
-            error=`git -C $1/$f fetch 2>&1 >/dev/null` \
-                && print-success \
-                || (print-error $error)
-        else
-            print-warning $warn
+            execute-command "git -C $1/$f rev-parse" "  Is git repo?" "warning"
+            if [ $? -eq 0 ]; then
+                execute-command "git -C $1/$f fetch" "  Fetching"
+            fi
         fi
     done
 }
 
 function git-project-pull {
     for f in `ls $1`; do
-        echo -n "$1/${f} ..."
-        if ! [ -d $1/$f ] ; then
-            print-warning 'Not directory'
-            continue
-        fi
-        warn=`git -C $1/$f rev-parse  2>&1 >/dev/null`
+        print-task "$1/$f"
+        execute-command "[ -d $1/$f ]" "  Is Directory?" "warning"
         if [ $? -eq 0 ]; then
-            error=`git -C $1/$f pull 2>&1 >/dev/null` \
-                && print-success \
-                || (print-error $error)
-        else
-            print-warning $warn
+            execute-command "git -C $1/$f rev-parse" "  Is git repo?" "warning"
+            if [ $? -eq 0 ]; then
+                execute-command "git -C $1/$f pull" "  Pulling"
+            fi
         fi
     done
 }
@@ -117,17 +127,22 @@ function clone-bitbucket-proj {
           print-info 'Usage: clone-bitbucket-proj [PROJECT-NAME]'
           return
     fi
+    if [ -z "$BITBUCKET_HOST" ]; then
+        echo -n "Please enter your Bitbucket Host: "
+        read -r BITBUCKET_HOST
+    fi
+    if [ -z "$BITBUCKET_USER" ]; then
+        echo -n "Please enter your Bitbucket Username: "
+        read -r BITBUCKET_USER
+    fi
     if [ -z "$BITBUCKET_PASS" ]; then
         echo -n "Please enter your Bitbucket Password: "
         read -sr BITBUCKET_PASS
         echo ''
     fi
-    mkdir -p $proj
+    execute-command "mkdir -p $proj"
     json=`curl -sk -u ${BITBUCKET_USER}:${BITBUCKET_PASS} -H "Content-Type: application/json" ${BITBUCKET_HOST}/rest/api/1.0/projects/$proj/repos`
     for repo in `echo $json | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'`; do
-        echo -n $repo...
-        error=`git -C $proj clone -q $repo 2>&1 >/dev/null` \
-               && print-success \
-               || (print-error $error)
+        execute-command "git -C $proj clone -q $repo"
     done
 }
