@@ -43,21 +43,21 @@ function print-error {
 
 function execute-command {
     usage="execute-command CMD [BANNER] [error/warning]"
-    [ -z "$1" ] && echo $usage && return
+    [ -z "$1" ] && echo "$usage" && return
     cmd=$1
     banner=${2-$1}
     reporter=${3-error}
-    [ $reporter != "error" ] \
-        && [ $reporter != "warning" ] \
-        && echo $usage \
+    [ "$reporter" != "error" ] \
+        && [ "$reporter" != "warning" ] \
+        && echo "$usage" \
         && return
     echo -n "${banner} ..."
-    error=`$cmd 2>&1 >/dev/null`
+    error=$($cmd 2>&1 >/dev/null)
     status=$?
     if [ $status -eq 0 ]; then
         print-success
     else
-        print-${reporter} $error
+        print-"${reporter}" "$error"
     fi
     return $status
 }
@@ -66,7 +66,7 @@ function execute-command {
 function clone-github-user-repos {
     user=${1-cnadiminti}
     execute-command "mkdir -p $user"
-    for repo in `curl -ks https://api.github.com/users/$user/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
+    for repo in `curl -ks https://api.github.com/users/"$user"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
         execute-command "git -C $user clone -q $repo"
     done
 }
@@ -74,18 +74,18 @@ function clone-github-user-repos {
 # Usage example: clone-github-org-repos sensu
 function clone-github-org-repos {
     org=$1
-    if [ -z $org ] ; then
+    if [ -z "$org" ] ; then
           print-info 'Usage: clone-github-org-repos [ORG-NAME]'
           return
     fi
     execute-command "mkdir -p $org"
-    for repo in `curl -ks https://api.github.com/orgs/$org/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
+    for repo in `curl -ks https://api.github.com/orgs/"$org"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
         execute-command "git -C $org clone -q $repo"
     done
 }
 
 function git-project-fetch {
-    for f in `ls $1`; do
+    for f in $1/*; do
         print-task "$1/$f"
         execute-command "[ -d $1/$f ]" "  Is Directory?" "warning"
         if [ $? -eq 0 ]; then
@@ -98,7 +98,7 @@ function git-project-fetch {
 }
 
 function git-project-pull {
-    for f in `ls $1`; do
+    for f in $1/*; do
         print-task "$1/$f"
         execute-command "[ -d $1/$f ]" "  Is Directory?" "warning"
         if [ $? -eq 0 ]; then
@@ -123,7 +123,7 @@ function clone-bazaar-branches {
 
 function clone-bitbucket-proj {
     proj=$1
-    if [ -z $proj ] ; then
+    if [ -z "$proj" ] ; then
           print-info 'Usage: clone-bitbucket-proj [PROJECT-NAME]'
           return
     fi
@@ -141,8 +141,8 @@ function clone-bitbucket-proj {
         echo ''
     fi
     execute-command "mkdir -p $proj"
-    json=`curl -sk -u ${BITBUCKET_USER}:${BITBUCKET_PASS} -H "Content-Type: application/json" ${BITBUCKET_HOST}/rest/api/1.0/projects/$proj/repos`
-    for repo in `echo $json | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'`; do
+    json=`curl -sk -u "${BITBUCKET_USER}:${BITBUCKET_PASS}" -H "Content-Type: application/json" "${BITBUCKET_HOST}"/rest/api/1.0/projects/"$proj"/repos`
+    for repo in `echo "$json" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'`; do
         execute-command "git -C $proj clone -q $repo"
     done
 }

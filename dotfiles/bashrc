@@ -6,7 +6,7 @@
 [ -z "$PS1" ] && return
 
 # default Editor
-EDITOR=emacs
+export EDITOR=vi
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -78,73 +78,62 @@ esac
 # Extra prompt for OpenStack
 PROMPT_COMMAND='if [ -n "$OS_AUTH_URL" ]; then echo [$(echo $OS_AUTH_URL)]; fi'
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # MAC OS X
-if [ `uname -s` == "Darwin" ]; then
+if [ "$(uname -s)" = "Darwin" ]; then
     alias alert='terminal-notifier -message "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
     # GRC
-    if [ -f `brew --prefix`/etc/grc.bashrc ]; then
-        source "`brew --prefix`/etc/grc.bashrc"
+    if [ -r "$(brew --prefix)"/etc/grc.bashrc ]; then
+        # shellcheck source=/dev/null
+        . "$(brew --prefix)/etc/grc.bashrc"
     fi
-    if [ -f `brew --prefix`/etc/bash_completion ]; then
-        . `brew --prefix`/etc/bash_completion
+    if [ -r "$(brew --prefix)"/etc/bash_completion ]; then
+        # shellcheck source=/dev/null
+        . "$(brew --prefix)"/etc/bash_completion
     fi
-    PATH=$PATH:/Applications/Eclipse.app/Contents/MacOS
+    PATH="$PATH:/Applications/Eclipse.app/Contents/MacOS"
 else
 # Linux
     # enable programmable completion features (you don't need to enable
     # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
     # sources /etc/bash.bashrc).
-    if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    if [ -r /etc/bash_completion ] && ! shopt -oq posix; then
+        # shellcheck source=/dev/null
         . /etc/bash_completion
     fi
     # Latest Eclipse on Ubuntu
-    PATH=$PATH:${HOME}/.local/share/umake/ide/eclipse
+    PATH="$PATH:${HOME}/.local/share/umake/ide/eclipse"
 fi
 
 # GO Programming
-mkdir -p $HOME/goprojects
-export GOPATH=$HOME/goprojects
-export PATH=$PATH:$GOPATH/bin
+mkdir -p "${HOME}/goprojects"
+export GOPATH="${HOME}/goprojects"
+export PATH="$PATH:$GOPATH/bin"
 
 # Function definitions.
 # You may want to put all your additions into a separate file like
-# ~/.bash_functions, instead of adding them here directly.
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
+# ${HOME}/.bash_functions, instead of adding them here directly.
+if [ -r "${HOME}/.bash_functions" ]; then
+    # shellcheck source=/dev/null
+    . "${HOME}/.bash_functions"
 fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
+# ${HOME}/.bash_aliases, instead of adding them here directly.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -r "${HOME}/.bash_aliases" ]; then
+    # shellcheck source=/dev/null
+    . "${HOME}/.bash_aliases"
 fi
 
 # And finally,
 # You may want to put Other 'private-stuff' like passwords/tokens/...
-# ~/.bash_personal, instead of adding them here directly.
-if [ -f ~/.bash_personal ]; then
-    . ~/.bash_personal
+# ${HOME}/.bash_personal, instead of adding them here directly.
+if [ -r "${HOME}/.bash_personal" ]; then
+    # shellcheck source=/dev/null
+    . "${HOME}/.bash_personal"
 fi

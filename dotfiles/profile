@@ -12,7 +12,8 @@
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
+        # shellcheck source=/dev/null
+        . "$HOME/.bashrc"
     fi
 fi
 
@@ -21,5 +22,4 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 # Ubuntu make installation of Ubuntu Make binary symlink
-PATH=$HOME/.local/share/umake/bin:$PATH
-
+PATH="$HOME/.local/share/umake/bin:$PATH"
