@@ -1394,6 +1394,22 @@
           key="/instance/org.python.pydev/FORMAT_WITH_AUTOPEP8">
         <value>record</value>
       </detail>
+      <detail
+          key="/instance/org.eclipse.mylyn.wikitext.ui/block-h3">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.mylyn.wikitext.ui/block-h1">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.mylyn.wikitext.ui/block-h2">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.mylyn.wikitext.ui/org.eclipse.mylyn.wikitext.ui.customtemplates">
+        <value>record</value>
+      </detail>
     </annotation>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -2126,6 +2142,26 @@
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.jdt.ui/sourceHoverBackgroundColor"
           value="68,68,68"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.eclipse.mylyn.wikitext.ui">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.mylyn.wikitext.ui/block-h1"
+          value="font-size: 120%; font-weight: bold; color: #8DDAF3;"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.mylyn.wikitext.ui/block-h2"
+          value="font-size: 110%; font-weight: bold; color: #8DDAF3;"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.mylyn.wikitext.ui/block-h3"
+          value="font-size: 105%; font-weight: bold; color: #8DDAF3;"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.mylyn.wikitext.ui/org.eclipse.mylyn.wikitext.ui.customtemplates"
+          value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?>&lt;templates/>"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
