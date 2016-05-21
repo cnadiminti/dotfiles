@@ -11,6 +11,7 @@ cask_args appdir: '/Applications'
 brew 'ant'
 brew 'readline'
 brew 'bash'
+brew 'shellcheck'
 brew 'cmake'
 brew 'coreutils'
 #PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"

@@ -1,9 +1,30 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    if [ -r ~/.dircolors ]; then
+        eval "$(dircolors -b ~/.dircolors)"
+    else
+        eval "$(dircolors -b)"
+    fi
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
 alias c='clear'
 alias p='pwd'
 alias h='history'
 alias x='exit'
 alias pyclean='find . -name "*.pyc" -exec rm {} \;'
 alias trimright='sed -ie "s/ \{1,\}$//"'
-if [ "`which plantuml`" == '' ]; then
+if ! hash plantuml 2>/dev/null; then
     alias plantuml='java -jar ~/Downloads/plantuml.jar'
 fi

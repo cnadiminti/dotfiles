@@ -1,0 +1,8 @@
+engines:
+  shellcheck:
+    enabled: true
+ratings:
+  paths:
+  - bin/**
+  - dotfiles/bash**
+  - dotfiles/profile

@@ -1,4 +1,7 @@
 [![Build Status](https://drone.io/github.com/cnadiminti/dotfiles/status.png)](https://drone.io/github.com/cnadiminti/dotfiles/latest)
+[![Code Climate](https://codeclimate.com/github/cnadiminti/dotfiles/badges/gpa.svg)](https://codeclimate.com/github/cnadiminti/dotfiles)
+[![Test Coverage](https://codeclimate.com/github/cnadiminti/dotfiles/badges/coverage.svg)](https://codeclimate.com/github/cnadiminti/dotfiles/coverage)
+[![Issue Count](https://codeclimate.com/github/cnadiminti/dotfiles/badges/issue_count.svg)](https://codeclimate.com/github/cnadiminti/dotfiles)
 
 # Chandra does dotfiles
 
@@ -12,25 +15,25 @@ To install just dotfiles:
 ```sh
 git clone https://github.com/cnadiminti/dotfiles.git
 cd dotfiles/bin
-./install_dotfiles.sh
+./install.sh
 ```
 
 To install dotfiles and more:
 ```sh
 git clone https://github.com/cnadiminti/dotfiles.git
 cd dotfiles/bin
-./install.sh
+./install.sh -a
 ```
 
 ## References
-- [Unofficial guide to dotfiles on GitHub] (https://dotfiles.github.io)
-- [python-dotfiles] (https://github.com/shanx/python-dotfiles)
-- [Python] (https://www.python.org/)
-- [git] (https://git-scm.com/)
-- [Homebrew] (http://brew.sh)
-- [iTerm2] (https://www.iterm2.com/)
-- [Eclipse] (https://eclipse.org/)
-- [Emacs] (https://www.gnu.org/software/emacs/)
-- [Inconsolata] (http://www.levien.com/type/myfonts/inconsolata.html)
-- [Kdiff3] (http://kdiff3.sourceforge.net/)
-- [Generic Colouriser] (https://github.com/garabik/grc)
+- [Unofficial guide to dotfiles on GitHub](https://dotfiles.github.io)
+- [python-dotfiles](https://github.com/shanx/python-dotfiles)
+- [Python](https://www.python.org/)
+- [git](https://git-scm.com/)
+- [Homebrew](http://brew.sh)
+- [iTerm2](https://www.iterm2.com/)
+- [Eclipse](https://eclipse.org/)
+- [Emacs](https://www.gnu.org/software/emacs/)
+- [Inconsolata](http://www.levien.com/type/myfonts/inconsolata.html)
+- [Kdiff3](http://kdiff3.sourceforge.net/)
+- [Generic Colouriser](https://github.com/garabik/grc)
