@@ -5,9 +5,6 @@ set -e
 export DOTFILES_BIN_DIR=$(dirname "$0")
 export REPO_ROOT_DIR="${DOTFILES_BIN_DIR}/.."
 
-source "$REPO_ROOT_DIR/dotfiles/bash_functions"
-system-info
-
 function usage {
     echo "Usage: $(basename "$0") [OPTIONS]" 1>&2
     echo '' 1>&2
@@ -34,6 +31,9 @@ for arg in "$@"; do
             ;;
     esac
 done
+
+source "$REPO_ROOT_DIR/dotfiles/bash_functions"
+system-info
 
 source "${DOTFILES_BIN_DIR}/install_dotfiles.sh"
 
