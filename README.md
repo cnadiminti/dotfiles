@@ -1,4 +1,7 @@
 [![Build Status](https://drone.io/github.com/cnadiminti/dotfiles/status.png)](https://drone.io/github.com/cnadiminti/dotfiles/latest)
+[![Code Climate](https://codeclimate.com/github/cnadiminti/dotfiles/badges/gpa.svg)](https://codeclimate.com/github/cnadiminti/dotfiles)
+[![Test Coverage](https://codeclimate.com/github/cnadiminti/dotfiles/badges/coverage.svg)](https://codeclimate.com/github/cnadiminti/dotfiles/coverage)
+[![Issue Count](https://codeclimate.com/github/cnadiminti/dotfiles/badges/issue_count.svg)](https://codeclimate.com/github/cnadiminti/dotfiles)
 
 # Chandra does dotfiles
 
