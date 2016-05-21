@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-export DOTFILES_BIN_DIR=`dirname $0`
-export REPO_ROOT_DIR=`dirname $0`/..
-
-. $REPO_ROOT_DIR/dotfiles/bash_functions
+set -e
 
 plugin_install_options=' -clean -purgeHistory
     -application org.eclipse.equinox.p2.director

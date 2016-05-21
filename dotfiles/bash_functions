@@ -26,7 +26,7 @@ function print-task {
 }
 
 function print-success {
-    echo -e "\033[01;32m ${UTF_8_HEAVY_CHECK_MARK}   $*\033[00m"
+    echo -e "\033[01;32m ${UTF_8_HEAVY_CHECK_MARK}   \033[00m"
 }
 
 function print-info {
@@ -66,7 +66,7 @@ function execute-command {
 function clone-github-user-repos {
     user=${1-cnadiminti}
     execute-command "mkdir -p $user"
-    for repo in `curl -ks https://api.github.com/users/"$user"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
+    for repo in $(curl -ks https://api.github.com/users/"$user"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
         execute-command "git -C $user clone -q $repo"
     done
 }
@@ -79,19 +79,19 @@ function clone-github-org-repos {
           return
     fi
     execute-command "mkdir -p $org"
-    for repo in `curl -ks https://api.github.com/orgs/"$org"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'`; do
+    for repo in $(curl -ks https://api.github.com/orgs/"$org"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
         execute-command "git -C $org clone -q $repo"
     done
 }
 
 function git-project-fetch {
     for f in $1/*; do
-        print-task "$1/$f"
-        execute-command "[ -d $1/$f ]" "  Is Directory?" "warning"
+        print-task "$f"
+        execute-command "[ -d $f ]" "  Is Directory?" "warning"
         if [ $? -eq 0 ]; then
-            execute-command "git -C $1/$f rev-parse" "  Is git repo?" "warning"
+            execute-command "git -C $f rev-parse" "  Is git repo?" "warning"
             if [ $? -eq 0 ]; then
-                execute-command "git -C $1/$f fetch" "  Fetching"
+                execute-command "git -C $f fetch" "  Fetching"
             fi
         fi
     done
@@ -99,12 +99,12 @@ function git-project-fetch {
 
 function git-project-pull {
     for f in $1/*; do
-        print-task "$1/$f"
-        execute-command "[ -d $1/$f ]" "  Is Directory?" "warning"
+        print-task "$f"
+        execute-command "[ -d $f ]" "  Is Directory?" "warning"
         if [ $? -eq 0 ]; then
-            execute-command "git -C $1/$f rev-parse" "  Is git repo?" "warning"
+            execute-command "git -C $f rev-parse" "  Is git repo?" "warning"
             if [ $? -eq 0 ]; then
-                execute-command "git -C $1/$f pull" "  Pulling"
+                execute-command "git -C $f pull" "  Pulling"
             fi
         fi
     done
@@ -141,8 +141,49 @@ function clone-bitbucket-proj {
         echo ''
     fi
     execute-command "mkdir -p $proj"
-    json=`curl -sk -u "${BITBUCKET_USER}:${BITBUCKET_PASS}" -H "Content-Type: application/json" "${BITBUCKET_HOST}"/rest/api/1.0/projects/"$proj"/repos`
-    for repo in `echo "$json" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'`; do
+    json=$(curl -sk -u "${BITBUCKET_USER}:${BITBUCKET_PASS}" -H "Content-Type: application/json" "${BITBUCKET_HOST}/rest/api/1.0/projects/$proj/repos")
+    for repo in $(echo "$json" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'); do
         execute-command "git -C $proj clone -q $repo"
     done
+}
+
+function system-info {
+    export SYS_OS_NAME=$(uname -s)
+    export SYS_OS_RELEASE=$(uname -r)
+    export SYS_OS_VERSION=$(uname -v)
+    export SYS_HARDWARE_NAME=$(uname -m)
+    export SYS_PROCESSOR_TYPE=$(uname -p)
+
+    if [ "${SYS_OS_NAME}" = "Linux" ] ; then
+        if [ -f /etc/redhat-release ]; then
+            export SYS_OS_TYPE=redhat
+        elif [ -f /etc/system-release ]; then
+            export SYS_OS_TYPE=redhat
+        elif [ -f /etc/debian_version ]; then
+            export SYS_OS_TYPE=debian
+        elif [ -f /etc/SuSE-release ]; then
+            export SYS_OS_TYPE=suse
+        fi
+
+        if [ -r /etc/os-release ] ; then
+            export SYS_OS_DIST_NAME=$(source /etc/os-release && echo "$NAME")
+            export SYS_OS_DIST_ID=$(source /etc/os-release && echo "$ID")
+            export SYS_OS_DIST_VERSION=$(source /etc/os-release && echo "$VERSION_ID")
+        fi
+    elif [ "${SYS_OS_NAME}" = "Darwin" ]; then
+        export SYS_OS_DIST_ID=$(sw_vers | grep ProductName | sed 's/ProductName:[ ]*//' | xargs)
+        export SYS_OS_DIST_VERSION=$(sw_vers | grep ProductVersion | sed 's/ProductVersion:[ ]*//'| xargs)
+    fi
+
+    if [ "$1" = "-v" ]; then
+        echo "SYS_OS_NAME=$SYS_OS_NAME"
+        echo "SYS_OS_TYPE=$SYS_OS_TYPE"
+        echo "SYS_OS_RELEASE=$SYS_OS_RELEASE"
+        echo "SYS_OS_VERSION=$SYS_OS_VERSION"
+        echo "SYS_HARDWARE_NAME=$SYS_HARDWARE_NAME"
+        echo "SYS_PROCESSOR_TYPE=$SYS_PROCESSOR_TYPE"
+        echo "SYS_OS_DIST_NAME=$SYS_OS_DIST_NAME"
+        echo "SYS_OS_DIST_ID=$SYS_OS_DIST_ID"
+        echo "SYS_OS_DIST_VERSION=$SYS_OS_DIST_VERSION"
+    fi
 }

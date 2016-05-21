@@ -1781,7 +1781,7 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.dltk.ruby.ui/DLTK_default"
-          value="136,136,136"/>
+          value="217,232,247"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.dltk.ruby.ui/DLTK_number"
@@ -1809,7 +1809,7 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.dltk.sh.ui/DLTK_default"
-          value="136,136,136"/>
+          value="217,232,247"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.dltk.sh.ui/formatter.tabulation.char"

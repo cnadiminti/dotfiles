@@ -2,12 +2,41 @@
 
 set -e
 
-export DOTFILES_BIN_DIR=`dirname $0`
-export REPO_ROOT_DIR=`dirname $0`/..
+export DOTFILES_BIN_DIR=$(dirname "$0")
+export REPO_ROOT_DIR="${DOTFILES_BIN_DIR}/.."
 
-. $REPO_ROOT_DIR/dotfiles/bash_functions
-read os_name os_info <<< `sh $DOTFILES_BIN_DIR/os_info.sh`
+source "$REPO_ROOT_DIR/dotfiles/bash_functions"
+system-info
 
-./$DOTFILES_BIN_DIR/install_dotfiles.sh
+function usage {
+    echo "Usage: $(basename "$0") [OPTIONS]" 1>&2
+    echo '' 1>&2
+    echo OPTIONS 1>&2
+    echo '    -a, --all   install all' 1>&2
+    echo '    --help      display this help and exit' 1>&2
+    exit 1
+}
 
-. $DOTFILES_BIN_DIR/install_apps.sh
+# loop for future additions
+install_all=""
+for arg in "$@"; do
+    case "$arg" in
+        -a|--all)
+            install_all=true
+            ;;
+        --help)
+            usage
+            exit
+            ;;
+        *)
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+source "${DOTFILES_BIN_DIR}/install_dotfiles.sh"
+
+if [ "$install_all" ]; then
+    source "${DOTFILES_BIN_DIR}/install_apps.sh"
+fi

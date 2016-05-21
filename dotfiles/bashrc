@@ -88,11 +88,11 @@ if [ "$(uname -s)" = "Darwin" ]; then
     # GRC
     if [ -r "$(brew --prefix)"/etc/grc.bashrc ]; then
         # shellcheck source=/dev/null
-        . "$(brew --prefix)/etc/grc.bashrc"
+        source "$(brew --prefix)/etc/grc.bashrc"
     fi
     if [ -r "$(brew --prefix)"/etc/bash_completion ]; then
         # shellcheck source=/dev/null
-        . "$(brew --prefix)"/etc/bash_completion
+        source "$(brew --prefix)"/etc/bash_completion
     fi
     PATH="$PATH:/Applications/Eclipse.app/Contents/MacOS"
 else
@@ -102,7 +102,7 @@ else
     # sources /etc/bash.bashrc).
     if [ -r /etc/bash_completion ] && ! shopt -oq posix; then
         # shellcheck source=/dev/null
-        . /etc/bash_completion
+        source /etc/bash_completion
     fi
     # Latest Eclipse on Ubuntu
     PATH="$PATH:${HOME}/.local/share/umake/ide/eclipse"
@@ -118,7 +118,7 @@ export PATH="$PATH:$GOPATH/bin"
 # ${HOME}/.bash_functions, instead of adding them here directly.
 if [ -r "${HOME}/.bash_functions" ]; then
     # shellcheck source=/dev/null
-    . "${HOME}/.bash_functions"
+     source "${HOME}/.bash_functions"
 fi
 
 # Alias definitions.
@@ -127,7 +127,7 @@ fi
 
 if [ -r "${HOME}/.bash_aliases" ]; then
     # shellcheck source=/dev/null
-    . "${HOME}/.bash_aliases"
+     source "${HOME}/.bash_aliases"
 fi
 
 # And finally,
@@ -135,5 +135,5 @@ fi
 # ${HOME}/.bash_personal, instead of adding them here directly.
 if [ -r "${HOME}/.bash_personal" ]; then
     # shellcheck source=/dev/null
-    . "${HOME}/.bash_personal"
+     source "${HOME}/.bash_personal"
 fi
