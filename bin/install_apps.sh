@@ -48,10 +48,3 @@ else
     echo "Error: Un-expected OS $SYS_OS_NAME"
     exit 1
 fi
-
-# gocode and oracle for GO programming 
-#go get -u github.com/nsf/gocode
-#go get -u golang.org/x/tools/cmd/...
-#go get -u github.com/golang/lint/golint
-
-source "${DOTFILES_BIN_DIR}/install_eclipse_plugins.sh"

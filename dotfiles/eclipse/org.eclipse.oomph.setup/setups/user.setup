@@ -4,7 +4,9 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:setup="http://www.eclipse.org/oomph/setup/1.0"
-    name="cnadimin">
+    xmlns:setup.p2="http://www.eclipse.org/oomph/setup/p2/1.0"
+    name="cnadimin"
+    unsignedPolicy="ACCEPT">
   <setupTask
       xsi:type="setup:CompoundTask"
       name="User Preferences">
@@ -2888,4 +2890,78 @@
           value="23,198,163"/>
     </setupTask>
   </setupTask>
+  <setupTask
+      xsi:type="setup.p2:P2Task"
+      id=""
+      label="">
+    <requirement
+        name="goclipse_feature.feature.group"
+        versionRange="[0.14.0,1.0.0)"/>
+    <requirement
+        name="org.eclipse.linuxtools.docker.feature.feature.group"
+        versionRange="[1.2.0,2.0.0)"/>
+    <requirement
+        name="org.eclipse.linuxtools.rpm.feature.group"
+        versionRange="[4.2.0,5.0.0)"/>
+    <requirement
+        name="org.eclipse.tm.terminal.feature.feature.group"
+        versionRange="[4.0.0,5.0.0)"/>
+    <requirement
+        name="net.sourceforge.plantuml.feature.feature.group"
+        versionRange="[1.1.0,2.0.0)"/>
+    <requirement
+        name="jsonedit-feature.feature.group"
+        versionRange="[1.0.0,2.0.0)"/>
+    <requirement
+        name="org.dadacoalition.yedit.feature.feature.group"
+        versionRange="[1.0.0,2.0.0)"/>
+    <requirement
+        name="org.eclipse.wst.web_ui.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wst.xml_ui.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.wst.jsdt.feature.feature.group"
+        versionRange="[1.6.0,2.0.0)"/>
+    <requirement
+        name="org.python.pydev.feature.feature.group"
+        versionRange="[5.0.0,6.0.0)"/>
+    <requirement
+        name="org.eclipse.dltk.ruby.feature.group"/>
+    <requirement
+        name="org.eclipse.dltk.sh.feature.group"/>
+    <requirement
+        name="org.eclipse.dltk.tcl.feature.group"/>
+    <requirement
+        name="org.eclipse.cdt.feature.group"
+        versionRange="[8.8.0,9.0.0)"/>
+    <requirement
+        name="org.eclipse.cdt.sdk.feature.group"
+        versionRange="[8.8.0,9.0.0)"/>
+    <requirement
+        name="org.eclipse.cdt.autotools.feature.group"
+        versionRange="[8.8.0,9.0.0)"/>
+    <requirement
+        name="org.eclipse.cdt.docker.launcher.feature.group"
+        versionRange="[8.8.0,9.0.0)"/>
+    <repository
+        url="http://download.eclipse.org/releases/mars"/>
+    <repository
+        url="http://pydev.org/updates"/>
+    <repository
+        url="http://plantuml.sourceforge.net/updatesitejuno"/>
+    <repository
+        url="http://goclipse.github.io/releases"/>
+    <repository
+        url="http://boothen.github.io/Json-Eclipse-Plugin"/>
+    <repository
+        url="http://dadacoalition.org/yedit"/>
+    <description></description>
+  </setupTask>
+  <acceptedLicense>6a3d083ad2bd7d3a80ee293235f8c5b1 Eclipse Foundation Software User Agreement</acceptedLicense>
+  <acceptedLicense>3d7c41752bcf482cfad838c6072244c3 [Enter License Description here.]</acceptedLicense>
+  <acceptedLicense>44ccb988189fad6cadb80b8b9ce732f9 This program and the accompanying materials are made available under the terms</acceptedLicense>
+  <acceptedLicense>30d252f582a9f4ebadd81c36d1b23c52 Eclipse Public License - v 1.0</acceptedLicense>
+  <acceptedLicense>2c212be1c1d75835247cc4747fa2be81 THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC LICENSE (&quot;AGREEMENT&quot;). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.</acceptedLicense>
+  <acceptedLicense>9d1ff302dbd49cb1d4a2aed195abcde8 Eclipse Public License - v 1.0</acceptedLicense>
+  <acceptedLicense>534cd1084188ba1c541f0de5b3813df6 Eclipse Public License - v 1.0</acceptedLicense>
 </setup:User>

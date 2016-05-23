@@ -3,14 +3,15 @@ tap 'homebrew/bundle'
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
 tap 'homebrew/completions'
+tap 'homebrew/core'
 
 brew 'caskroom/cask/brew-cask'
 cask_args appdir: '/Applications'
 
 # Utils
 brew 'ant'
-brew 'readline'
 brew 'bash'
+  brew 'readline'
 brew 'shellcheck'
 brew 'cmake'
 brew 'coreutils'
@@ -22,28 +23,36 @@ brew 'ipcalc'
 brew 'ossp-uuid'
 brew 'tree'
 brew 'pstree'
-brew 'openssl'
 brew 'wget'
+  brew 'openssl'
 brew 'ssh-copy-id'
 brew 'git'
 brew 'git-review'
 cask 'github-desktop'
-brew 'bzr'
+brew 'bazaar'
 brew 'bash-completion'
 brew 'plantuml'
+  brew 'graphviz'
+    brew 'libpng'
+    brew 'freetype' #optional
+    brew 'librsvg'
 #cask 'yed'
 brew 'terminal-notifier'
 
 # Languages
 brew 'ansible'
+  brew 'libyaml'
 brew 'go'
 cask 'java'
 brew 'python'
+  brew 'sqlite'
+  brew 'gdbm'
 brew 'ruby'
 
 # IDEs
 cask 'eclipse-ide'
 brew 'emacs', args: ['with-cocoa', 'with-gnutls']
+  brew 'gnutls'
 cask 'iterm2'
 
 # Browsers
@@ -59,12 +68,20 @@ cask 'virtualbox'
 cask 'vagrant'
 brew 'vagrant-completion'
 #cask 'vagrant-manager'
+brew 'docker'
+brew 'docker-compose'
+  brew 'libyaml'
+brew 'docker-machine'
 cask 'dockertoolbox'
 brew 'rancher-compose'
 
 brew 'kdiff3'
+  brew 'qt'
 cask 'flux'
 cask 'skype'
 
 # Fonts
 cask 'font-inconsolata'
+
+#node js
+brew 'node'
