@@ -11,24 +11,24 @@ if [ "$SYS_OS_NAME" = "Darwin" ] ; then
     brew cleanup && brew cask cleanup
 elif [ "$SYS_OS_NAME" = "Linux" ] ; then
     if [ "$SYS_OS_TYPE" = "debian" ] ; then
-        execute-command 'sudo apt-get install grc wget git bash-completion -y'
-        execute-command 'sudo apt-get install fonts-inconsolata -y'
-        execute-command 'sudo apt-get install libnotify-bin -y'
-        execute-command 'sudo apt-get install gcc -y'
-        execute-command 'sudo apt-get install -y golang'
+        execute_command 'sudo apt-get install grc wget git bash-completion -y'
+        execute_command 'sudo apt-get install fonts-inconsolata -y'
+        execute_command 'sudo apt-get install libnotify-bin -y'
+        execute_command 'sudo apt-get install gcc -y'
+        execute_command 'sudo apt-get install -y golang'
         # TODO: update the list
         if ! hash eclipse 2>/dev/null; then
-            execute-command 'sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y'
-            execute-command 'sudo apt-get update'
-            execute-command 'sudo apt-get install ubuntu-make -y'
-            execute-command "umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse"
+            execute_command 'sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y'
+            execute_command 'sudo apt-get update'
+            execute_command 'sudo apt-get install ubuntu-make -y'
+            execute_command "umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse"
         fi
     elif [ "$SYS_OS_TYPE" = "redhat" ] ; then
-        execute-command 'sudo yum -y install grc wget git bash-completion'
-        execute-command 'sudo yum -y install levien-inconsolata-fonts'
-        execute-command 'sudo yum -y install libnotify'
-        execute-command 'sudo yum -y install gcc'
-        execute-command 'sudo yum -y install golang'
+        execute_command 'sudo yum -y install grc wget git bash-completion'
+        execute_command 'sudo yum -y install levien-inconsolata-fonts'
+        execute_command 'sudo yum -y install libnotify'
+        execute_command 'sudo yum -y install gcc'
+        execute_command 'sudo yum -y install golang'
         # TODO: update the list
     else
         echo "Error: Un-expected Linux distribution $SYS_OS_TYPE"
