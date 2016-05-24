@@ -4,7 +4,7 @@ UTF_8_HEAVY_WARNING_SIGN='\xe2\x9a\xa0'
 UTF_8_INFORMATION_SOURCE='\xe2\x84\xb9'
 UTF_8_BLACK_RIGHT_POINTING_INDEX='\xE2\x98\x9B'
 
-function print-available-terminal-colors {
+function print_available_terminal_colors {
     T='gYw'   # The test text
     echo -e "\n                 40m     41m     42m     43m\
      44m     45m     46m     47m";
@@ -21,27 +21,27 @@ function print-available-terminal-colors {
     echo
 }
 
-function print-task {
+function print_task {
     echo -e "${UTF_8_BLACK_RIGHT_POINTING_INDEX} $1"
 }
 
-function print-success {
+function print_success {
     echo -e "\033[01;32m ${UTF_8_HEAVY_CHECK_MARK}   \033[00m"
 }
 
-function print-info {
+function print_info {
     echo -e "\033[01;34m ${UTF_8_INFORMATION_SOURCE}   $*\033[00m"
 }
 
-function print-warning {
+function print_warning {
     echo -e "\033[01;33m ${UTF_8_HEAVY_WARNING_SIGN}   $*\033[00m"
 }
 
-function print-error {
+function print_error {
     echo -e "\033[01;31m ${UTF_8_HEAVY_BALLOT_X}   $*\033[00m"
 }
 
-function execute-command {
+function execute_command {
     usage="execute-command CMD [BANNER] [error/warning]"
     [ -z "$1" ] && echo "$usage" && return
     cmd=$1
@@ -55,62 +55,62 @@ function execute-command {
     error=$($cmd 2>&1 >/dev/null)
     status=$?
     if [ $status -eq 0 ]; then
-        print-success
+        print_success
     else
-        print-"${reporter}" "$error"
+        print_"${reporter}" "$error"
     fi
     return $status
 }
 
 # Usage example: clone-github-user-repos cnadiminti
-function clone-github-user-repos {
+function clone_github_user_repos {
     user=${1-cnadiminti}
-    execute-command "mkdir -p $user"
+    execute_command "mkdir -p $user"
     for repo in $(curl -ks https://api.github.com/users/"$user"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
-        execute-command "git -C $user clone -q $repo"
+        execute_command "git -C $user clone -q $repo"
     done
 }
 
 # Usage example: clone-github-org-repos sensu
-function clone-github-org-repos {
+function clone_github_org_repos {
     org=$1
     if [ -z "$org" ] ; then
-          print-info 'Usage: clone-github-org-repos [ORG-NAME]'
+          print_info 'Usage: clone_github_org_repos [ORG-NAME]'
           return
     fi
-    execute-command "mkdir -p $org"
+    execute_command "mkdir -p $org"
     for repo in $(curl -ks https://api.github.com/orgs/"$org"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
-        execute-command "git -C $org clone -q $repo"
+        execute_command "git -C $org clone -q $repo"
     done
 }
 
-function git-project-fetch {
+function git_project_fetch {
     for f in $1/*; do
-        print-task "$f"
-        execute-command "[ -d $f ]" "  Is Directory?" "warning"
+        print_task "$f"
+        execute_command "[ -d $f ]" "  Is Directory?" "warning"
         if [ $? -eq 0 ]; then
-            execute-command "git -C $f rev-parse" "  Is git repo?" "warning"
+            execute_command "git -C $f rev-parse" "  Is git repo?" "warning"
             if [ $? -eq 0 ]; then
-                execute-command "git -C $f fetch" "  Fetching"
+                execute_command "git -C $f fetch" "  Fetching"
             fi
         fi
     done
 }
 
-function git-project-pull {
+function git_project_pull {
     for f in $1/*; do
-        print-task "$f"
-        execute-command "[ -d $f ]" "  Is Directory?" "warning"
+        print_task "$f"
+        execute_command "[ -d $f ]" "  Is Directory?" "warning"
         if [ $? -eq 0 ]; then
-            execute-command "git -C $f rev-parse" "  Is git repo?" "warning"
+            execute_command "git -C $f rev-parse" "  Is git repo?" "warning"
             if [ $? -eq 0 ]; then
-                execute-command "git -C $f pull" "  Pulling"
+                execute_command "git -C $f pull" "  Pulling"
             fi
         fi
     done
 }
 
-function clone-bazaar-branches {
+function clone_bazaar_branches {
     bzr branch lp:~cisco-openstack/neutron/cis-havana bzr-cisco-neutron-havana
     bzr branch lp:~ubuntu-server-dev/neutron/havana bzr-ubuntu-neutron-havana
 
@@ -121,10 +121,10 @@ function clone-bazaar-branches {
     bzr branch lp:~ubuntu-server-dev/neutron/juno bzr-ubuntu-neutron-juno
 }
 
-function clone-bitbucket-proj {
+function clone_bitbucket_proj {
     proj=$1
     if [ -z "$proj" ] ; then
-          print-info 'Usage: clone-bitbucket-proj [PROJECT-NAME]'
+          print_info 'Usage: clone_bitbucket_proj [PROJECT-NAME]'
           return
     fi
     if [ -z "$BITBUCKET_HOST" ]; then
@@ -140,14 +140,14 @@ function clone-bitbucket-proj {
         read -sr BITBUCKET_PASS
         echo ''
     fi
-    execute-command "mkdir -p $proj"
+    execute_command "mkdir -p $proj"
     json=$(curl -sk -u "${BITBUCKET_USER}:${BITBUCKET_PASS}" -H "Content-Type: application/json" "${BITBUCKET_HOST}/rest/api/1.0/projects/$proj/repos")
     for repo in $(echo "$json" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'); do
-        execute-command "git -C $proj clone -q $repo"
+        execute_command "git -C $proj clone -q $repo"
     done
 }
 
-function system-info {
+function system_info {
     export SYS_OS_NAME=$(uname -s)
     export SYS_OS_RELEASE=$(uname -r)
     export SYS_OS_VERSION=$(uname -v)

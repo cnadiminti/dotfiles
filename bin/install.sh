@@ -33,7 +33,7 @@ for arg in "$@"; do
 done
 
 source "$REPO_ROOT_DIR/dotfiles/bash_functions"
-system-info
+system_info
 
 source "${DOTFILES_BIN_DIR}/install_dotfiles.sh"
 
