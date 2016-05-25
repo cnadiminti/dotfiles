@@ -1,8 +1,15 @@
 engines:
   shellcheck:
     enabled: true
+  fixme:
+    enabled: true
+  markdownlint:
+    enabled: true
 ratings:
   paths:
   - bin/**
-  - dotfiles/bash**
+  - dotfiles/bash_aliases
+  - dotfiles/bash_functions
+  - dotfiles/bash_logout
+  - dotfiles/bashrc
   - dotfiles/profile

@@ -2,8 +2,8 @@
 
 set -e
 
-export DOTFILES_BIN_DIR=$(dirname "$0")
-export REPO_ROOT_DIR="${DOTFILES_BIN_DIR}/.."
+DOTFILES_BIN_DIR=$(dirname "$0")
+REPO_ROOT_DIR="${DOTFILES_BIN_DIR}/.."
 
 function usage {
     echo "Usage: $(basename "$0") [OPTIONS]" 1>&2
@@ -32,11 +32,14 @@ for arg in "$@"; do
     esac
 done
 
+# shellcheck source=dotfiles/bash_functions
 source "$REPO_ROOT_DIR/dotfiles/bash_functions"
-system_info
+system_info "$@"
 
+# shellcheck source=bin/install_dotfiles.sh
 source "${DOTFILES_BIN_DIR}/install_dotfiles.sh"
 
 if [ "$install_all" ]; then
+    # shellcheck source=bin/install_apps.sh
     source "${DOTFILES_BIN_DIR}/install_apps.sh"
 fi
