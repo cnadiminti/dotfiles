@@ -62,16 +62,20 @@ function execute_command {
     return $status
 }
 
-# Usage example: clone-github-user-repos cnadiminti
+# Usage example: clone_github_user_repos cnadiminti
 function clone_github_user_repos {
     user=${1-cnadiminti}
     execute_command "mkdir -p $user"
-    for repo in $(curl -ks https://api.github.com/users/"$user"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
-        execute_command "git -C $user clone -q $repo"
+    last_page=$(curl -Iks https://api.github.com/orgs/"$user"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
+    for p in $(seq 1 $last_page); do
+        print_task "Working on page# $p"
+        for repo in $(curl -ks https://api.github.com/users/"$user"/repos?page="$p" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
+            execute_command "git -C $user clone -q $repo"
+        done
     done
 }
 
-# Usage example: clone-github-org-repos sensu
+# Usage example: clone_github_org_repos sensu
 function clone_github_org_repos {
     org=$1
     if [ -z "$org" ] ; then
@@ -79,8 +83,12 @@ function clone_github_org_repos {
           return
     fi
     execute_command "mkdir -p $org"
-    for repo in $(curl -ks https://api.github.com/orgs/"$org"/repos?per_page=100 | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
-        execute_command "git -C $org clone -q $repo"
+    last_page=$(curl -Iks https://api.github.com/orgs/"$org"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
+    for p in $(seq 1 $last_page); do
+        print_task "Working on page# $p"
+        for repo in $(curl -ks https://api.github.com/orgs/"$org"/repos?page="$p" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
+            execute_command "git -C $org clone -q $repo"
+        done
     done
 }
 
