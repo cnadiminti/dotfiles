@@ -1412,6 +1412,38 @@
           key="/instance/org.eclipse.mylyn.wikitext.ui/org.eclipse.mylyn.wikitext.ui.customtemplates">
         <value>record</value>
       </detail>
+      <detail
+          key="/instance/org.eclipse.dltk.ruby.ui/variable">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.dltk.ruby.ui/DLTK_keyword_return">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.dltk.ruby.ui/DLTK_keyword">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.dltk.ruby.ui/variable.pseudo">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.dltk.ruby.ui/DLTK_string.regexp">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.cdt.make.ui/org.eclipse.cdt.make.ui.editor.default">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.dadacoalition.yedit/spacesPerTab">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.dltk.sh.ui/DLTK_single_line_comment">
+        <value>record</value>
+      </detail>
     </annotation>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -1428,6 +1460,14 @@
           xsi:type="setup:PreferenceTask"
           key="/instance/com.python.pydev.analysis/SEVERITY_PEP8"
           value="1"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.dadacoalition.yedit">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.dadacoalition.yedit/spacesPerTab"
+          value="4"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -1484,6 +1524,14 @@
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.ant.ui/overriddenByCSS"
           value=",org.eclipse.ant.ui.commentsColor,org.eclipse.ant.ui.constantStringsColor,org.eclipse.ant.ui.constantStringsColor_italic,org.eclipse.ant.ui.dtdColor,org.eclipse.ant.ui.processingInstructionsColor,org.eclipse.ant.ui.processingInstructionsColor_bold,org.eclipse.ant.ui.tagsColor,org.eclipse.ant.ui.tagsColor_bold,org.eclipse.ant.ui.textColor,org.eclipse.ant.ui.debugColor,org.eclipse.ant.ui.errorColor,org.eclipse.ant.ui.informationColor,"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.eclipse.cdt.make.ui">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.cdt.make.ui/org.eclipse.cdt.make.ui.editor.default"
+          value="217,232,247"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -1786,6 +1834,14 @@
           value="217,232,247"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.dltk.ruby.ui/DLTK_keyword"
+          value="221,40,103"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.dltk.ruby.ui/DLTK_keyword_return"
+          value="221,40,103"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.dltk.ruby.ui/DLTK_number"
           value="104,151,187"/>
       <setupTask
@@ -1798,8 +1854,20 @@
           value="255,191,38"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.dltk.ruby.ui/DLTK_string.regexp"
+          value="217,232,247"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.dltk.ruby.ui/ruby.symbols"
           value="18,144,195"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.dltk.ruby.ui/variable"
+          value="217,232,247"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.dltk.ruby.ui/variable.pseudo"
+          value="221,40,103"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -1812,6 +1880,10 @@
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.dltk.sh.ui/DLTK_default"
           value="217,232,247"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.dltk.sh.ui/DLTK_single_line_comment"
+          value="98,98,98"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.dltk.sh.ui/formatter.tabulation.char"
