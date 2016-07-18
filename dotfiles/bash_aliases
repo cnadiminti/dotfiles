@@ -28,3 +28,13 @@ alias trimright='sed -ie "s/ \{1,\}$//"'
 if ! hash plantuml 2>/dev/null; then
     alias plantuml='java -jar ~/Downloads/plantuml.jar'
 fi
+
+alias codeclimate-docker='docker run \
+    --interactive --tty --rm   \
+    --env CODECLIMATE_CODE="$PWD" \
+    --volume "$PWD":/code \
+    --volume /var/run/docker.sock:/var/run/docker.sock \
+    --volume /tmp/cc:/tmp/cc \
+    codeclimate/codeclimate $1'
+
+alias avro-tools='java -jar ~/avro-tools-1.8.1.jar'
