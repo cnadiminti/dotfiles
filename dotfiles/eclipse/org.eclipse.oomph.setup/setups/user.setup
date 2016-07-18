@@ -1444,6 +1444,38 @@
           key="/instance/org.eclipse.dltk.sh.ui/DLTK_single_line_comment">
         <value>record</value>
       </detail>
+      <detail
+          key="/instance/org.eclipse.cdt.make.ui/org.eclipse.cdt.make.ui.editor.macro_ref">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/jsonedit-core/styleBoolean.color">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/jsonedit-core/styleNull.color">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/jsonedit-core/styleKey.color">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/jsonedit-core/styleDefault.color">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/jsonedit-core/styleText.color">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/jsonedit-core/styleNumber.color">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/jsonedit-core/styleBoolean.isBold">
+        <value>record</value>
+      </detail>
     </annotation>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -1460,6 +1492,38 @@
           xsi:type="setup:PreferenceTask"
           key="/instance/com.python.pydev.analysis/SEVERITY_PEP8"
           value="1"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="jsonedit-core">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/jsonedit-core/styleBoolean.color"
+          value="204,129,186"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/jsonedit-core/styleBoolean.isBold"
+          value="false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/jsonedit-core/styleDefault.color"
+          value="217,232,247"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/jsonedit-core/styleKey.color"
+          value="221,40,102"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/jsonedit-core/styleNull.color"
+          value="204,129,186"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/jsonedit-core/styleNumber.color"
+          value="102,225,248"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/jsonedit-core/styleText.color"
+          value="22,198,163"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -1532,6 +1596,10 @@
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.cdt.make.ui/org.eclipse.cdt.make.ui.editor.default"
           value="217,232,247"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.cdt.make.ui/org.eclipse.cdt.make.ui.editor.macro_ref"
+          value="13,209,63"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -3015,6 +3083,9 @@
     <requirement
         name="org.eclipse.cdt.docker.launcher.feature.group"
         versionRange="[8.8.0,9.0.0)"/>
+    <requirement
+        name="org.scala-ide.sdt.feature.feature.group"
+        versionRange="[4.4.0,5.0.0)"/>
     <repository
         url="http://download.eclipse.org/releases/mars"/>
     <repository
@@ -3027,6 +3098,8 @@
         url="http://boothen.github.io/Json-Eclipse-Plugin"/>
     <repository
         url="http://dadacoalition.org/yedit"/>
+    <repository
+        url="http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site"/>
     <description></description>
   </setupTask>
   <acceptedLicense>6a3d083ad2bd7d3a80ee293235f8c5b1 Eclipse Foundation Software User Agreement</acceptedLicense>
@@ -3036,4 +3109,6 @@
   <acceptedLicense>2c212be1c1d75835247cc4747fa2be81 THE ACCOMPANYING PROGRAM IS PROVIDED UNDER THE TERMS OF THIS ECLIPSE PUBLIC LICENSE (&quot;AGREEMENT&quot;). ANY USE, REPRODUCTION OR DISTRIBUTION OF THE PROGRAM CONSTITUTES RECIPIENT'S ACCEPTANCE OF THIS AGREEMENT.</acceptedLicense>
   <acceptedLicense>9d1ff302dbd49cb1d4a2aed195abcde8 Eclipse Public License - v 1.0</acceptedLicense>
   <acceptedLicense>534cd1084188ba1c541f0de5b3813df6 Eclipse Public License - v 1.0</acceptedLicense>
+  <acceptedLicense>45e9eea0e90551a82fae124a61bc7c0a SCALA LICENSE</acceptedLicense>
+  <acceptedLicense>e216c2760a635ccbfbed1d976cc8e888 Copyright (c) 2008-2014 Typesafe Inc, Mark Harrah, Grzegorz Kossakowski, Josh Suereth, Indrajit Raychaudhuri, Eugene Yokota, and other contributors.</acceptedLicense>
 </setup:User>
