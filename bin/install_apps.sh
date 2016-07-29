@@ -11,11 +11,12 @@ if [ "$SYS_OS_NAME" = "Darwin" ] ; then
     brew cleanup && brew cask cleanup
 elif [ "$SYS_OS_NAME" = "Linux" ] ; then
     if [ "$SYS_OS_TYPE" = "debian" ] ; then
-        execute_command 'sudo apt-get install grc wget git bash-completion -y'
-        execute_command 'sudo apt-get install fonts-inconsolata -y'
-        execute_command 'sudo apt-get install libnotify-bin -y'
-        execute_command 'sudo apt-get install gcc -y'
+        execute_command 'sudo apt-get install -y grc wget git bash-completion'
+        execute_command 'sudo apt-get install -y fonts-inconsolata'
+        execute_command 'sudo apt-get install -y libnotify-bin'
+        execute_command 'sudo apt-get install -y gcc'
         execute_command 'sudo apt-get install -y golang'
+        execute_command 'sudo apt-get install -y emacs24-lucid emacs-goodies-el'
         # TODO: update the list
         if ! hash eclipse 2>/dev/null; then
             execute_command 'sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y'
@@ -29,6 +30,7 @@ elif [ "$SYS_OS_NAME" = "Linux" ] ; then
         execute_command 'sudo yum -y install libnotify'
         execute_command 'sudo yum -y install gcc'
         execute_command 'sudo yum -y install golang'
+        execute_command 'sudo yum -y install emacs'
         # TODO: update the list
     else
         echo "Error: Un-expected Linux distribution $SYS_OS_TYPE"
