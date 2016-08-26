@@ -37,4 +37,6 @@ alias codeclimate-docker='docker run \
     --volume /tmp/cc:/tmp/cc \
     codeclimate/codeclimate $1'
 
-alias avro-tools='java -jar ~/avro-tools-1.8.1.jar'
+alias avro-tools='java -jar ~/Downloads/avro-tools-1.8.1.jar'
+
+alias swagger-editor='docker run -it --rm -p 8080:8080 swaggerapi/swagger-editor'
