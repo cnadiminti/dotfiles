@@ -1476,6 +1476,46 @@
           key="/instance/jsonedit-core/styleBoolean.isBold">
         <value>record</value>
       </detail>
+      <detail
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.bracket.colour">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.default.colour">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.operator.colour">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.string.colour">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.multiLineString.colour">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.character.colour">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.semantic.lazyTemplateVal.colour">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.semantic.templateVal.colour">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.dadacoalition.yedit/colorDefaultPreference">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.dadacoalition.yedit/colorScalarPreference">
+        <value>record</value>
+      </detail>
     </annotation>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -1528,6 +1568,14 @@
     <setupTask
         xsi:type="setup:CompoundTask"
         name="org.dadacoalition.yedit">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.dadacoalition.yedit/colorDefaultPreference"
+          value="217,232,247"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.dadacoalition.yedit/colorScalarPreference"
+          value="217,232,247"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.dadacoalition.yedit/spacesPerTab"
@@ -2063,7 +2111,7 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.jdt.ui/overriddenByCSS"
-          value=",content_assist_completion_replacement_background,content_assist_completion_replacement_foreground,content_assist_parameters_background,content_assist_parameters_foreground,content_assist_proposals_background,content_assist_proposals_foreground,java_bracket,java_comment_task_tag,java_default,java_doc_default,java_doc_keyword,java_doc_link,java_doc_tag,java_keyword,java_keyword_return,java_multi_line_comment,java_operator,java_single_line_comment,java_string,matchingBracketsColor,pf_coloring_argument,pf_coloring_assignment,pf_coloring_comment,pf_coloring_key,pf_coloring_value,semanticHighlighting.abstractClass.bold,semanticHighlighting.abstractClass.color,semanticHighlighting.abstractClass.enabled,semanticHighlighting.abstractMethodInvocation.color,semanticHighlighting.abstractMethodInvocation.enabled,semanticHighlighting.annotation.bold,semanticHighlighting.annotation.color,semanticHighlighting.annotation.enabled,semanticHighlighting.annotation.italic,semanticHighlighting.annotationElementReference.color,semanticHighlighting.annotationElementReference.enabled,semanticHighlighting.class.color,semanticHighlighting.class.enabled,semanticHighlighting.class.bold,semanticHighlighting.deprecatedMember.color,semanticHighlighting.deprecatedMember.enabled,semanticHighlighting.deprecatedMember.underline,semanticHighlighting.deprecatedMember.strikethrough,semanticHighlighting.enum.color,semanticHighlighting.enum.enabled,semanticHighlighting.enum.italic,semanticHighlighting.field.color,semanticHighlighting.field.enabled,semanticHighlighting.inheritedMethodInvocation.color,semanticHighlighting.inheritedMethodInvocation.enabled,semanticHighlighting.interface.color,semanticHighlighting.interface.enabled,semanticHighlighting.localVariable.color,semanticHighlighting.localVariable.enabled,semanticHighlighting.localVariableDeclaration.color,semanticHighlighting.localVariableDeclaration.enabled,semanticHighlighting.method.color,semanticHighlighting.method.enabled,semanticHighlighting.methodDeclarationName.color,semanticHighlighting.methodDeclarationName.enabled,semanticHighlighting.number.color,semanticHighlighting.number.enabled,semanticHighlighting.parameterVariable.color,semanticHighlighting.parameterVariable.enabled,semanticHighlighting.staticField.color,semanticHighlighting.staticField.enabled,semanticHighlighting.staticFinalField.color,semanticHighlighting.staticFinalField.enabled,semanticHighlighting.staticMethodInvocation.color,semanticHighlighting.staticMethodInvocation.enabled,semanticHighlighting.typeArgument.color,semanticHighlighting.typeArgument.enabled,semanticHighlighting.typeParameter.color,semanticHighlighting.typeParameter.enabled,sourceHoverBackgroundColor,"/>
+          value=",content_assist_completion_replacement_background,content_assist_completion_replacement_foreground,content_assist_parameters_background,content_assist_parameters_foreground,content_assist_proposals_background,content_assist_proposals_foreground,java_bracket,java_comment_task_tag,java_default,java_doc_default,java_doc_keyword,java_doc_link,java_doc_tag,java_keyword,java_keyword_return,java_multi_line_comment,java_operator,java_single_line_comment,java_string,matchingBracketsColor,pf_coloring_argument,pf_coloring_assignment,pf_coloring_comment,pf_coloring_key,pf_coloring_value,semanticHighlighting.abstractClass.bold,semanticHighlighting.abstractClass.color,semanticHighlighting.abstractClass.enabled,semanticHighlighting.abstractMethodInvocation.color,semanticHighlighting.abstractMethodInvocation.enabled,semanticHighlighting.annotation.bold,semanticHighlighting.annotation.color,semanticHighlighting.annotation.enabled,semanticHighlighting.annotation.italic,semanticHighlighting.annotationElementReference.color,semanticHighlighting.annotationElementReference.enabled,semanticHighlighting.class.color,semanticHighlighting.class.enabled,semanticHighlighting.class.bold,semanticHighlighting.deprecatedMember.color,semanticHighlighting.deprecatedMember.enabled,semanticHighlighting.deprecatedMember.underline,semanticHighlighting.deprecatedMember.strikethrough,semanticHighlighting.enum.color,semanticHighlighting.enum.enabled,semanticHighlighting.enum.italic,semanticHighlighting.field.color,semanticHighlighting.field.enabled,semanticHighlighting.inheritedMethodInvocation.color,semanticHighlighting.inheritedMethodInvocation.enabled,semanticHighlighting.interface.color,semanticHighlighting.interface.enabled,semanticHighlighting.localVariable.color,semanticHighlighting.localVariable.enabled,semanticHighlighting.localVariableDeclaration.color,semanticHighlighting.localVariableDeclaration.enabled,semanticHighlighting.method.color,semanticHighlighting.method.enabled,semanticHighlighting.methodDeclarationName.color,semanticHighlighting.methodDeclarationName.enabled,semanticHighlighting.number.color,semanticHighlighting.number.enabled,semanticHighlighting.parameterVariable.color,semanticHighlighting.parameterVariable.enabled,semanticHighlighting.staticField.color,semanticHighlighting.staticField.enabled,semanticHighlighting.staticFinalField.color,semanticHighlighting.staticFinalField.enabled,semanticHighlighting.staticMethodInvocation.color,semanticHighlighting.staticMethodInvocation.enabled,semanticHighlighting.typeArgument.color,semanticHighlighting.typeArgument.enabled,semanticHighlighting.typeParameter.color,semanticHighlighting.typeParameter.enabled,"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.jdt.ui/pf_coloring_argument"
@@ -3029,6 +3077,42 @@
           key="/instance/org.python.pydev/UNICODE_COLOR"
           value="23,198,163"/>
     </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.scala-ide.sdt.core">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.bracket.colour"
+          value="217,232,247"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.character.colour"
+          value="23,198,163"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.default.colour"
+          value="217,232,247"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.multiLineString.colour"
+          value="23,198,163"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.operator.colour"
+          value="217,232,247"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.semantic.lazyTemplateVal.colour"
+          value="94,94,255"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.semantic.templateVal.colour"
+          value="94,94,255"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.scala-ide.sdt.core/syntaxColouring.string.colour"
+          value="23,198,163"/>
+    </setupTask>
   </setupTask>
   <setupTask
       xsi:type="setup.p2:P2Task"
@@ -3084,8 +3168,23 @@
         name="org.eclipse.cdt.docker.launcher.feature.group"
         versionRange="[8.8.0,9.0.0)"/>
     <requirement
-        name="org.scala-ide.sdt.feature.feature.group"
-        versionRange="[4.4.0,5.0.0)"/>
+        name="org.scala-ide.sbt.feature.feature.group"/>
+    <requirement
+        name="org.scala-ide.sdt.feature.feature.group"/>
+    <requirement
+        name="org.scala-ide.scala211.feature.feature.group"/>
+    <requirement
+        name="org.springframework.ide.eclipse.feature.feature.group"/>
+    <requirement
+        name="org.springframework.ide.eclipse.autowire.feature.feature.group"/>
+    <requirement
+        name="org.springframework.ide.eclipse.integration.feature.feature.group"/>
+    <requirement
+        name="org.springframework.ide.eclipse.boot.feature.feature.group"/>
+    <requirement
+        name="org.springframework.ide.eclipse.maven.feature.feature.group"/>
+    <requirement
+        name="org.springframework.ide.eclipse.boot.dash.feature.feature.group"/>
     <repository
         url="http://download.eclipse.org/releases/mars"/>
     <repository
@@ -3100,6 +3199,10 @@
         url="http://dadacoalition.org/yedit"/>
     <repository
         url="http://download.scala-ide.org/sdk/lithium/e44/scala211/stable/site"/>
+    <repository
+        url="http://www.nodeclipse.org/updates/"/>
+    <repository
+        url="http://dist.springframework.org/release/IDE"/>
     <description></description>
   </setupTask>
   <acceptedLicense>6a3d083ad2bd7d3a80ee293235f8c5b1 Eclipse Foundation Software User Agreement</acceptedLicense>
