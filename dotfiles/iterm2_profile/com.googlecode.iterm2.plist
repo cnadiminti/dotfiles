@@ -720,7 +720,7 @@
 	<key>MaxVertically</key>
 	<false/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/GitHub/cnadiminti/dotfiles/dotfiles/iterm2_profile</string>
+	<string>~/Pictures</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 459}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -767,13 +767,15 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>356 295 606 456 0 0 1280 777 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>330 298 620 392 0 0 1280 777 </string>
+	<string>330 218 620 392 0 0 1280 777 </string>
+	<key>NSWindow Frame SharedPreferences</key>
+	<string>296 164 796 473 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>27 64 929 452 0 0 1280 777 </string>
+	<string>21 315 665 452 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>35 143 1129 627 0 0 1280 777 </string>
+	<string>3 294 793 452 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>225 51 961 452 0 0 1280 777 </string>
+	<string>65 121 993 605 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
 	<string>34 318 1209 452 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
@@ -950,8 +952,6 @@
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
-			<key>Background Image Location</key>
-			<string></string>
 			<key>Blend</key>
 			<real>0.30000001192092896</real>
 			<key>Blink Allowed</key>
@@ -1521,7 +1521,7 @@
 	<key>NoSyncInstallationId</key>
 	<string>1BA07EBF-DD89-4E92-8B8F-487638092626</string>
 	<key>NoSyncLastTipTime</key>
-	<real>491508882.06161302</real>
+	<real>494532314.870565</real>
 	<key>NoSyncNeverRemindPrefsChangesCopy</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
@@ -1569,6 +1569,29 @@
 		<string>0027</string>
 		<string>0028</string>
 		<string>0029</string>
+		<string>0030</string>
+		<string>0031</string>
+		<string>0032</string>
+		<string>0033</string>
+		<string>0034</string>
+		<string>0035</string>
+		<string>0036</string>
+		<string>0037</string>
+		<string>0038</string>
+		<string>0039</string>
+		<string>0040</string>
+		<string>0041</string>
+		<string>0042</string>
+		<string>0043</string>
+		<string>0044</string>
+		<string>0045</string>
+		<string>0046</string>
+		<string>0047</string>
+		<string>0048</string>
+		<string>0049</string>
+		<string>0050</string>
+		<string>0051</string>
+		<string>0052</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
@@ -1638,7 +1661,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-07-29T20:51:23Z</date>
+	<date>2016-09-02T01:21:45Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1682,6 +1705,6 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>3.0.5</string>
+	<string>3.0.8</string>
 </dict>
 </plist>
