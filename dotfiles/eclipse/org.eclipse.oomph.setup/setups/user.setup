@@ -3201,4 +3201,6 @@
   <acceptedLicense>534cd1084188ba1c541f0de5b3813df6 Eclipse Public License - v 1.0</acceptedLicense>
   <acceptedLicense>45e9eea0e90551a82fae124a61bc7c0a SCALA LICENSE</acceptedLicense>
   <acceptedLicense>e216c2760a635ccbfbed1d976cc8e888 Copyright (c) 2008-2014 Typesafe Inc, Mark Harrah, Grzegorz Kossakowski, Josh Suereth, Indrajit Raychaudhuri, Eugene Yokota, and other contributors.</acceptedLicense>
+  <acceptedLicense>731702f483d5de88d5a85543a649cb74 SPRING IDE PROJECT SOFTWARE USER AGREEMENT</acceptedLicense>
+  <acceptedLicense>6b7f0f09cf18fd2029cef44ed0df932a GoClipse Software User Agreement</acceptedLicense>
 </setup:User>
