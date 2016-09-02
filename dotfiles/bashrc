@@ -137,3 +137,7 @@ if [ -r "${HOME}/.bash_personal" ]; then
     # shellcheck source=/dev/null
      source "${HOME}/.bash_personal"
 fi
+
+if hash jenv 2>/dev/null; then
+    eval "$(jenv init -)"
+fi

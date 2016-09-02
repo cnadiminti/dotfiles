@@ -203,3 +203,9 @@ function docker_rmi_none {
         docker rmi $img
     done
 }
+
+function brew_cleanup {
+    brew uninstall `brew list` || true
+    brew cask uninstall `brew cask list` || true
+    brew prune
+}
