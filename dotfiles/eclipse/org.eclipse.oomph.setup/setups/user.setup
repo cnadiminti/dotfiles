@@ -1516,6 +1516,94 @@
           key="/instance/org.dadacoalition.yedit/colorScalarPreference">
         <value>record</value>
       </detail>
+      <detail
+          key="/instance/org.eclipse.e4.ui.workbench.renderers.swt/themeEnabled">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.json.ui/COMMA">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffHunkForegroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffHeadlineBackgroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffRemoveForegroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.IgnoredResourceForegroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffHunkBackgroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.IgnoredResourceBackgroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffAddBackgroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.json.ui/VALUE_NUMBER">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.json.ui/VALUE_NULL">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.UncommittedChangeBackgroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.json.ui/overriddenByCSS">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffAddForegroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.json.ui/OBJECT_KEY">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.json.ui/VALUE_STRING">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffHeadlineForegroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.json.ui/COLON">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.json.ui/VALUE_BOOLEAN">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.json.ui/CURLY_BRACE">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffRemoveBackgroundColor">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.wst.jsdt.ui/javaScriptOccurrenceIndicationColor">
+        <value>record</value>
+      </detail>
     </annotation>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -2020,6 +2108,10 @@
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.e4.ui.workbench.renderers.swt/enableMRU"
           value="true"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.e4.ui.workbench.renderers.swt/themeEnabled"
+          value="true"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -2111,7 +2203,7 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.jdt.ui/overriddenByCSS"
-          value=",content_assist_completion_replacement_background,content_assist_completion_replacement_foreground,content_assist_parameters_background,content_assist_parameters_foreground,content_assist_proposals_background,content_assist_proposals_foreground,java_bracket,java_comment_task_tag,java_default,java_doc_default,java_doc_keyword,java_doc_link,java_doc_tag,java_keyword,java_keyword_return,java_multi_line_comment,java_operator,java_single_line_comment,java_string,matchingBracketsColor,pf_coloring_argument,pf_coloring_assignment,pf_coloring_comment,pf_coloring_key,pf_coloring_value,semanticHighlighting.abstractClass.bold,semanticHighlighting.abstractClass.color,semanticHighlighting.abstractClass.enabled,semanticHighlighting.abstractMethodInvocation.color,semanticHighlighting.abstractMethodInvocation.enabled,semanticHighlighting.annotation.bold,semanticHighlighting.annotation.color,semanticHighlighting.annotation.enabled,semanticHighlighting.annotation.italic,semanticHighlighting.annotationElementReference.color,semanticHighlighting.annotationElementReference.enabled,semanticHighlighting.class.color,semanticHighlighting.class.enabled,semanticHighlighting.class.bold,semanticHighlighting.deprecatedMember.color,semanticHighlighting.deprecatedMember.enabled,semanticHighlighting.deprecatedMember.underline,semanticHighlighting.deprecatedMember.strikethrough,semanticHighlighting.enum.color,semanticHighlighting.enum.enabled,semanticHighlighting.enum.italic,semanticHighlighting.field.color,semanticHighlighting.field.enabled,semanticHighlighting.inheritedMethodInvocation.color,semanticHighlighting.inheritedMethodInvocation.enabled,semanticHighlighting.interface.color,semanticHighlighting.interface.enabled,semanticHighlighting.localVariable.color,semanticHighlighting.localVariable.enabled,semanticHighlighting.localVariableDeclaration.color,semanticHighlighting.localVariableDeclaration.enabled,semanticHighlighting.method.color,semanticHighlighting.method.enabled,semanticHighlighting.methodDeclarationName.color,semanticHighlighting.methodDeclarationName.enabled,semanticHighlighting.number.color,semanticHighlighting.number.enabled,semanticHighlighting.parameterVariable.color,semanticHighlighting.parameterVariable.enabled,semanticHighlighting.staticField.color,semanticHighlighting.staticField.enabled,semanticHighlighting.staticFinalField.color,semanticHighlighting.staticFinalField.enabled,semanticHighlighting.staticMethodInvocation.color,semanticHighlighting.staticMethodInvocation.enabled,semanticHighlighting.typeArgument.color,semanticHighlighting.typeArgument.enabled,semanticHighlighting.typeParameter.color,semanticHighlighting.typeParameter.enabled,"/>
+          value=",content_assist_completion_replacement_background,content_assist_completion_replacement_foreground,content_assist_parameters_background,content_assist_parameters_foreground,content_assist_proposals_background,content_assist_proposals_foreground,java_bracket,java_comment_task_tag,java_default,java_doc_default,java_doc_keyword,java_doc_link,java_doc_tag,java_keyword,java_keyword_return,java_multi_line_comment,java_operator,java_single_line_comment,java_string,matchingBracketsColor,pf_coloring_argument,pf_coloring_assignment,pf_coloring_comment,pf_coloring_key,pf_coloring_value,semanticHighlighting.abstractClass.bold,semanticHighlighting.abstractClass.color,semanticHighlighting.abstractClass.enabled,semanticHighlighting.abstractMethodInvocation.color,semanticHighlighting.abstractMethodInvocation.enabled,semanticHighlighting.annotation.bold,semanticHighlighting.annotation.color,semanticHighlighting.annotation.enabled,semanticHighlighting.annotation.italic,semanticHighlighting.annotationElementReference.color,semanticHighlighting.annotationElementReference.enabled,semanticHighlighting.class.color,semanticHighlighting.class.enabled,semanticHighlighting.class.bold,semanticHighlighting.deprecatedMember.color,semanticHighlighting.deprecatedMember.enabled,semanticHighlighting.deprecatedMember.underline,semanticHighlighting.deprecatedMember.strikethrough,semanticHighlighting.enum.color,semanticHighlighting.enum.enabled,semanticHighlighting.enum.italic,semanticHighlighting.field.color,semanticHighlighting.field.enabled,semanticHighlighting.inheritedMethodInvocation.color,semanticHighlighting.inheritedMethodInvocation.enabled,semanticHighlighting.interface.color,semanticHighlighting.interface.enabled,semanticHighlighting.localVariable.color,semanticHighlighting.localVariable.enabled,semanticHighlighting.localVariableDeclaration.color,semanticHighlighting.localVariableDeclaration.enabled,semanticHighlighting.method.color,semanticHighlighting.method.enabled,semanticHighlighting.methodDeclarationName.color,semanticHighlighting.methodDeclarationName.enabled,semanticHighlighting.number.color,semanticHighlighting.number.enabled,semanticHighlighting.parameterVariable.color,semanticHighlighting.parameterVariable.enabled,semanticHighlighting.staticField.color,semanticHighlighting.staticField.enabled,semanticHighlighting.staticFinalField.color,semanticHighlighting.staticFinalField.enabled,semanticHighlighting.staticMethodInvocation.color,semanticHighlighting.staticMethodInvocation.enabled,semanticHighlighting.typeArgument.color,semanticHighlighting.typeArgument.enabled,semanticHighlighting.typeParameter.color,semanticHighlighting.typeParameter.enabled,sourceHoverBackgroundColor,"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.jdt.ui/pf_coloring_argument"
@@ -2630,6 +2722,50 @@
           value="31,179,235"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffAddBackgroundColor"
+          value="11,121,90"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffAddForegroundColor"
+          value="216,254,245"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffHeadlineBackgroundColor"
+          value="71,71,71"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffHeadlineForegroundColor"
+          value="242,242,242"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffHunkBackgroundColor"
+          value="53,97,113"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffHunkForegroundColor"
+          value="233,242,254"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffRemoveBackgroundColor"
+          value="117,2,36"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.DiffRemoveForegroundColor"
+          value="255,232,237"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.IgnoredResourceBackgroundColor"
+          value="42,42,42"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.IgnoredResourceForegroundColor"
+          value="120,120,120"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.UncommittedChangeBackgroundColor"
+          value="42,42,42"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.ui.workbench/org.eclipse.egit.ui.UncommittedChangeForegroundColor"
           value="114,157,186"/>
       <setupTask
@@ -2643,7 +2779,7 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.ui.workbench/overriddenByCSS"
-          value=",ACTIVE_HYPERLINK_COLOR,CONFLICTING_COLOR,CONTENT_ASSIST_BACKGROUND_COLOR,CONTENT_ASSIST_FOREGROUND_COLOR,ERROR_COLOR,HYPERLINK_COLOR,INCOMING_COLOR,OUTGOING_COLOR,RESOLVED_COLOR,"/>
+          value=",org.eclipse.egit.ui.DiffAddBackgroundColor,org.eclipse.egit.ui.DiffAddForegroundColor,org.eclipse.egit.ui.DiffHeadlineBackgroundColor,org.eclipse.egit.ui.DiffHeadlineForegroundColor,org.eclipse.egit.ui.DiffHunkBackgroundColor,org.eclipse.egit.ui.DiffHunkForegroundColor,org.eclipse.egit.ui.DiffRemoveBackgroundColor,org.eclipse.egit.ui.DiffRemoveForegroundColor,org.eclipse.egit.ui.IgnoredResourceBackgroundColor,org.eclipse.egit.ui.IgnoredResourceForegroundColor,org.eclipse.egit.ui.UncommittedChangeBackgroundColor,org.eclipse.egit.ui.UncommittedChangeForegroundColor,"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.ui.workbench/RESOLVED_COLOR"
@@ -2823,15 +2959,15 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_doc_default"
-          value="98,98,98"/>
+          value="96,139,78"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_doc_keyword"
-          value="154,140,124"/>
+          value="65,94,53"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_doc_link"
-          value="169,156,140"/>
+          value="65,94,53"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_doc_tag"
@@ -2839,15 +2975,15 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_keyword"
-          value="221,40,103"/>
+          value="86,156,214"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_keyword_return"
-          value="221,40,103"/>
+          value="86,156,214"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_multi_line_comment"
-          value="98,98,98"/>
+          value="96,139,78"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_operator"
@@ -2855,11 +2991,15 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_single_line_comment"
-          value="98,98,98"/>
+          value="96,139,78"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/java_string"
-          value="23,198,163"/>
+          value="206,145,120"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.jsdt.ui/javaScriptOccurrenceIndicationColor"
+          value="18,79,120"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/org.eclipse.jface.textfont"
@@ -2867,7 +3007,7 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/overriddenByCSS"
-          value=",java_bracket,java_comment_task_tag,java_default,java_doc_default,java_doc_keyword,java_doc_link,java_doc_tag,java_keyword,java_keyword_return,java_multi_line_comment,java_operator,java_single_line_comment,java_string,semanticHighlighting.deprecatedMember.color,semanticHighlighting.localVariable.color,semanticHighlighting.localVariable.enabled,semanticHighlighting.localVariableDeclaration.color,semanticHighlighting.localVariableDeclaration.enabled,semanticHighlighting.method.bold,semanticHighlighting.method.color,semanticHighlighting.method.enabled,semanticHighlighting.methodDeclarationName.bold,semanticHighlighting.methodDeclarationName.color,semanticHighlighting.methodDeclarationName.enabled,semanticHighlighting.parameterVariable.color,semanticHighlighting.parameterVariable.enabled,tagName,"/>
+          value=",content_assist_completion_replacement_background,content_assist_completion_replacement_foreground,content_assist_parameters_background,content_assist_parameters_foreground,content_assist_proposals_background,content_assist_proposals_foreground,java_bracket,java_comment_task_tag,java_default,java_doc_default,java_doc_keyword,java_doc_link,java_doc_tag,java_keyword,java_keyword_return,java_multi_line_comment,java_operator,java_single_line_comment,java_string,semanticHighlighting.deprecatedMember.color,semanticHighlighting.localVariable.color,semanticHighlighting.localVariable.enabled,semanticHighlighting.localVariableDeclaration.color,semanticHighlighting.localVariableDeclaration.enabled,semanticHighlighting.parameterVariable.color,semanticHighlighting.parameterVariable.enabled,tagName,sourceHoverBackgroundColor,sourceHoverBackgroundColor.SystemDefault,javaScriptOccurrenceIndicationColor,"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.deprecatedMember.color"
@@ -2890,28 +3030,22 @@
           value="true"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.method.bold"
-          value="true"/>
+          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.method.bold"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.method.color"
-          value="167,236,33"/>
+          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.method.color"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.method.enabled"
-          value="true"/>
+          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.method.enabled"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.methodDeclarationName.bold"
-          value="true"/>
+          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.methodDeclarationName.bold"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.methodDeclarationName.color"
-          value="13,209,64"/>
+          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.methodDeclarationName.color"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
-          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.methodDeclarationName.enabled"
-          value="true"/>
+          key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.methodDeclarationName.enabled"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/semanticHighlighting.parameterVariable.color"
@@ -2923,7 +3057,47 @@
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.wst.jsdt.ui/tagName"
-          value="167,236,33"/>
+          value="217,232,247"/>
+    </setupTask>
+    <setupTask
+        xsi:type="setup:CompoundTask"
+        name="org.eclipse.wst.json.ui">
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.json.ui/COLON"
+          value="#FFFFFF | null | false | false | false | false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.json.ui/COMMA"
+          value="#FFFFFF | null | false | false | false | false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.json.ui/CURLY_BRACE"
+          value="#FFFFFF | null | false | false | false | false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.json.ui/OBJECT_KEY"
+          value="#BED6FF | null | false | false | false | false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.json.ui/overriddenByCSS"
+          value=",COLON,COMMA,CURLY_BRACE,OBJECT_KEY,VALUE_BOOLEAN,VALUE_NULL,VALUE_NUMBER,VALUE_STRING,"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.json.ui/VALUE_BOOLEAN"
+          value="#03A8D8 | null | false | false | false | false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.json.ui/VALUE_NULL"
+          value="#969696 | null | false | false | false | false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.json.ui/VALUE_NUMBER"
+          value="#D25242 | null | false | false | false | false"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.wst.json.ui/VALUE_STRING"
+          value="#FFC600 | null | true | true | false | false"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
