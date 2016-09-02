@@ -3119,36 +3119,27 @@
       id=""
       label="">
     <requirement
-        name="goclipse_feature.feature.group"
-        versionRange="[0.14.0,1.0.0)"/>
+        name="goclipse_feature.feature.group"/>
     <requirement
-        name="org.eclipse.linuxtools.docker.feature.feature.group"
-        versionRange="[1.2.0,2.0.0)"/>
+        name="org.eclipse.linuxtools.docker.feature.feature.group"/>
     <requirement
-        name="org.eclipse.linuxtools.rpm.feature.group"
-        versionRange="[4.2.0,5.0.0)"/>
+        name="org.eclipse.linuxtools.rpm.feature.group"/>
     <requirement
-        name="org.eclipse.tm.terminal.feature.feature.group"
-        versionRange="[4.0.0,5.0.0)"/>
+        name="org.eclipse.tm.terminal.feature.feature.group"/>
     <requirement
-        name="net.sourceforge.plantuml.feature.feature.group"
-        versionRange="[1.1.0,2.0.0)"/>
+        name="net.sourceforge.plantuml.feature.feature.group"/>
     <requirement
-        name="jsonedit-feature.feature.group"
-        versionRange="[1.0.0,2.0.0)"/>
+        name="jsonedit-feature.feature.group"/>
     <requirement
-        name="org.dadacoalition.yedit.feature.feature.group"
-        versionRange="[1.0.0,2.0.0)"/>
+        name="org.dadacoalition.yedit.feature.feature.group"/>
     <requirement
         name="org.eclipse.wst.web_ui.feature.feature.group"/>
     <requirement
         name="org.eclipse.wst.xml_ui.feature.feature.group"/>
     <requirement
-        name="org.eclipse.wst.jsdt.feature.feature.group"
-        versionRange="[1.6.0,2.0.0)"/>
+        name="org.eclipse.wst.jsdt.feature.feature.group"/>
     <requirement
-        name="org.python.pydev.feature.feature.group"
-        versionRange="[5.0.0,6.0.0)"/>
+        name="org.python.pydev.feature.feature.group"/>
     <requirement
         name="org.eclipse.dltk.ruby.feature.group"/>
     <requirement
@@ -3156,17 +3147,13 @@
     <requirement
         name="org.eclipse.dltk.tcl.feature.group"/>
     <requirement
-        name="org.eclipse.cdt.feature.group"
-        versionRange="[8.8.0,9.0.0)"/>
+        name="org.eclipse.cdt.feature.group"/>
     <requirement
-        name="org.eclipse.cdt.sdk.feature.group"
-        versionRange="[8.8.0,9.0.0)"/>
+        name="org.eclipse.cdt.sdk.feature.group"/>
     <requirement
-        name="org.eclipse.cdt.autotools.feature.group"
-        versionRange="[8.8.0,9.0.0)"/>
+        name="org.eclipse.cdt.autotools.feature.group"/>
     <requirement
-        name="org.eclipse.cdt.docker.launcher.feature.group"
-        versionRange="[8.8.0,9.0.0)"/>
+        name="org.eclipse.cdt.docker.launcher.feature.group"/>
     <requirement
         name="org.scala-ide.sbt.feature.feature.group"/>
     <requirement
