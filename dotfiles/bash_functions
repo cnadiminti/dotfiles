@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 UTF_8_HEAVY_BALLOT_X='\xe2\x9c\x98'
 UTF_8_HEAVY_CHECK_MARK='\xe2\x9c\x94'
 UTF_8_HEAVY_WARNING_SIGN='\xe2\x9a\xa0'
@@ -67,7 +69,7 @@ function clone_github_user_repos {
     user=${1-cnadiminti}
     execute_command "mkdir -p $user"
     last_page=$(curl -Iks https://api.github.com/orgs/"$user"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
-    for p in $(seq 1 $last_page); do
+    for p in $(seq 1 "$last_page"); do
         print_task "Working on page# $p"
         for repo in $(curl -ks https://api.github.com/users/"$user"/repos?page="$p" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
             execute_command "git -C $user clone -q $repo"
@@ -84,7 +86,7 @@ function clone_github_org_repos {
     fi
     execute_command "mkdir -p $org"
     last_page=$(curl -Iks https://api.github.com/orgs/"$org"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
-    for p in $(seq 1 $last_page); do
+    for p in $(seq 1 "$last_page"); do
         print_task "Working on page# $p"
         for repo in $(curl -ks https://api.github.com/orgs/"$org"/repos?page="$p" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
             execute_command "git -C $org clone -q $repo"
@@ -174,8 +176,11 @@ function system_info {
         fi
 
         if [ -r /etc/os-release ] ; then
+            # shellcheck disable=SC1091
             export SYS_OS_DIST_NAME=$(source /etc/os-release && echo "$NAME")
+            # shellcheck disable=SC1091
             export SYS_OS_DIST_ID=$(source /etc/os-release && echo "$ID")
+            # shellcheck disable=SC1091
             export SYS_OS_DIST_VERSION=$(source /etc/os-release && echo "$VERSION_ID")
         fi
     elif [ "${SYS_OS_NAME}" = "Darwin" ]; then
@@ -198,14 +203,16 @@ function system_info {
 
 # Delete all the images with <none> tag
 function docker_rmi_none {
-    for img in `docker images | grep none | awk '{ print $3 }'`; do
-        echo $img
-        docker rmi $img
+    for img in $(docker images | grep none | awk '{ print $3 }'); do
+        echo "$img"
+        docker rmi "$img"
     done
 }
 
 function brew_cleanup {
-    brew uninstall `brew list` || true
-    brew cask uninstall `brew cask list` || true
+    brew cleanup
+    brew cask cleanup
+    brew uninstall "$(brew list)" || true
+    brew cask uninstall "$(brew cask list)" || true
     brew prune
 }

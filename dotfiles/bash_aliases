@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     if [ -r ~/.dircolors ]; then
@@ -29,13 +31,7 @@ if ! hash plantuml 2>/dev/null; then
     alias plantuml='java -jar ~/Downloads/plantuml.jar'
 fi
 
-alias codeclimate-docker='docker run \
-    --interactive --tty --rm   \
-    --env CODECLIMATE_CODE="$PWD" \
-    --volume "$PWD":/code \
-    --volume /var/run/docker.sock:/var/run/docker.sock \
-    --volume /tmp/cc:/tmp/cc \
-    codeclimate/codeclimate $1'
+alias codeclimate-docker='docker run -it --rm --env CODECLIMATE_CODE="$PWD" -v "$PWD":/code -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/cc:/tmp/cc codeclimate/codeclimate'
 
 alias avro-tools='java -jar ~/Downloads/avro-tools-1.8.1.jar'
 
