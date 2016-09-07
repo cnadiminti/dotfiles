@@ -1604,6 +1604,14 @@
           key="/instance/org.eclipse.wst.jsdt.ui/javaScriptOccurrenceIndicationColor">
         <value>record</value>
       </detail>
+      <detail
+          key="/instance/org.eclipse.debug.ui/preferredTargets">
+        <value>record</value>
+      </detail>
+      <detail
+          key="/instance/org.eclipse.jdt.ui/org.eclipse.jdt.internal.ui.navigator.librariesnode">
+        <value>record</value>
+      </detail>
     </annotation>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -2024,6 +2032,10 @@
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.debug.ui/overriddenByCSS"
           value=",org.eclipse.debug.ui.MemoryHistoryKnownColor,org.eclipse.debug.ui.MemoryHistoryUnknownColor,org.eclipse.debug.ui.PREF_CHANGED_VALUE_BACKGROUND,org.eclipse.debug.ui.changedDebugElement,org.eclipse.debug.ui.consoleBackground,org.eclipse.debug.ui.errorColor,org.eclipse.debug.ui.inColor,org.eclipse.debug.ui.outColor,"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.debug.ui/preferredTargets"
+          value="default:default|default,org.chromium.debug.ui.toggleTargetId:default|"/>
     </setupTask>
     <setupTask
         xsi:type="setup:CompoundTask"
@@ -2196,6 +2208,10 @@
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.jdt.ui/matchingBracketsColor"
           value="102,112,125"/>
+      <setupTask
+          xsi:type="setup:PreferenceTask"
+          key="/instance/org.eclipse.jdt.ui/org.eclipse.jdt.internal.ui.navigator.librariesnode"
+          value="true"/>
       <setupTask
           xsi:type="setup:PreferenceTask"
           key="/instance/org.eclipse.jdt.ui/org.eclipse.jface.textfont"
@@ -3346,8 +3362,28 @@
         name="org.springframework.ide.eclipse.maven.feature.feature.group"/>
     <requirement
         name="org.springframework.ide.eclipse.boot.dash.feature.feature.group"/>
+    <requirement
+        name="org.springsource.ide.eclipse.dashboard.feature.group"/>
+    <requirement
+        name="org.springframework.ide.eclipse.maven.feature.feature.group"/>
+    <requirement
+        name="com.vmware.vfabric.ide.eclipse.tcserver.feature.group"/>
+    <requirement
+        name="org.springsource.ide.eclipse.commons.quicksearch.feature.feature.group"/>
+    <requirement
+        name="org.eclipse.mylyn.github.feature.feature.group"/>
+    <requirement
+        name="org.nodeclipse.feature.group"/>
+    <requirement
+        name="org.chromium.debug.feature.group"/>
+    <requirement
+        name="org.chromium.sdk.feature.group"/>
+    <requirement
+        name="org.nodeclipse.mongodb.feature.feature.group"/>
+    <requirement
+        name="code.google.restclient.tool.feature.feature.group"/>
     <repository
-        url="http://download.eclipse.org/releases/mars"/>
+        url="http://download.eclipse.org/releases/neon"/>
     <repository
         url="http://pydev.org/updates"/>
     <repository
@@ -3364,6 +3400,8 @@
         url="http://www.nodeclipse.org/updates/"/>
     <repository
         url="http://dist.springframework.org/release/IDE"/>
+    <repository
+        url="http://dist.springsource.com/release/TOOLS/update/e4.6/"/>
     <description></description>
   </setupTask>
   <acceptedLicense>6a3d083ad2bd7d3a80ee293235f8c5b1 Eclipse Foundation Software User Agreement</acceptedLicense>
@@ -3377,4 +3415,7 @@
   <acceptedLicense>e216c2760a635ccbfbed1d976cc8e888 Copyright (c) 2008-2014 Typesafe Inc, Mark Harrah, Grzegorz Kossakowski, Josh Suereth, Indrajit Raychaudhuri, Eugene Yokota, and other contributors.</acceptedLicense>
   <acceptedLicense>731702f483d5de88d5a85543a649cb74 SPRING IDE PROJECT SOFTWARE USER AGREEMENT</acceptedLicense>
   <acceptedLicense>6b7f0f09cf18fd2029cef44ed0df932a GoClipse Software User Agreement</acceptedLicense>
+  <acceptedLicense>32f24bec6a696635f722fbc2a664e201 Copyright (c) 2012 - 2015 The Nodeclipse Authors. All rights reserved.</acceptedLicense>
+  <acceptedLicense>2b495527b315808f459ac5454dbbe2da Eclipse Integration Commons 3.8.0 GA</acceptedLicense>
+  <acceptedLicense>4420907242c49cfbbc1776eaa3ae7a79 Pivotal tc Sever Integration for Eclipse 3.8.0 GA</acceptedLicense>
 </setup:User>
