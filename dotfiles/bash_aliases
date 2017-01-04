@@ -31,8 +31,9 @@ if ! hash plantuml 2>/dev/null; then
     alias plantuml='java -jar ~/Downloads/plantuml.jar'
 fi
 
-alias codeclimate-docker='docker run -it --rm --env CODECLIMATE_CODE="$PWD" -v "$PWD":/code -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/cc:/tmp/cc codeclimate/codeclimate'
+alias docker-codeclimate='docker run -it --rm --env CODECLIMATE_CODE="$PWD" -v "$PWD":/code -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/cc:/tmp/cc codeclimate/codeclimate'
 
 alias avro-tools='java -jar ~/Downloads/avro-tools-1.8.1.jar'
 
 alias swagger-editor='docker run -it --rm -p 8080:8080 swaggerapi/swagger-editor'
+alias docker-rake-build='docker run -it --rm -v $(pwd):/root -w /root ruby:2.3 bash -c "bundle install &&  bundle exec rake spec build"'

@@ -114,6 +114,7 @@ fi
 mkdir -p "${HOME}/goprojects"
 export GOPATH="${HOME}/goprojects"
 export PATH="$PATH:$GOPATH/bin"
+export GOROOT=/usr/local/opt/go/
 
 # Function definitions.
 # You may want to put all your additions into a separate file like
@@ -142,4 +143,8 @@ fi
 
 if hash jenv 2>/dev/null; then
     eval "$(jenv init -)"
+fi
+
+if [ -x /usr/libexec/java_home ]; then
+    export JAVA_HOME="$(/usr/libexec/java_home)"
 fi
