@@ -120,17 +120,6 @@ function git_project_pull {
     done
 }
 
-function clone_bazaar_branches {
-    bzr branch lp:~cisco-openstack/neutron/cis-havana bzr-cisco-neutron-havana
-    bzr branch lp:~ubuntu-server-dev/neutron/havana bzr-ubuntu-neutron-havana
-
-    bzr branch lp:~cisco-openstack/neutron/icehouse bzr-cisco-neutron-icehouse
-    bzr branch lp:~ubuntu-server-dev/neutron/icehouse bzr-ubuntu-neutron-icehouse
-
-    # bzr branch lp:~cisco-openstack/neutron/juno?? bzr-cisco-neutron-juno
-    bzr branch lp:~ubuntu-server-dev/neutron/juno bzr-ubuntu-neutron-juno
-}
-
 function clone_bitbucket_proj {
     proj=$1
     if [ -z "$proj" ] ; then
