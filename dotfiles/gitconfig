@@ -1,6 +1,3 @@
-[user]
-	name = Chandra Mohan Babu Nadiminti
-	email = cnadimin@cisco.com
 [core]
 	excludesfile = ~/.gitignore
 [color]
