@@ -49,7 +49,6 @@ I have been using them so far on Ubuntu and Mac OS X.
 - [x] [flux](https://justgetflux.com/)
 - [x] [font-inconsolata](http://levien.com/type/myfonts/inconsolata.html)
 - [x] [google-chrome](https://www.google.com/chrome/)
-- [x] [google-photos-backup](https://www.google.com/photos/about/)
 - [x] [Homebrew](https://brew.sh)
 - [x] [iterm2](https://www.iterm2.com/)
 - [x] [java](http://www.oracle.com/technetwork/java/javase/overview/index.html)
