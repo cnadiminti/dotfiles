@@ -46,6 +46,7 @@ function install_apps {
             execute_command 'sudo apt-get install -y golang'
             # TODO: update the list
             if ! hash eclipse 2>/dev/null; then
+                execute_command 'sudo apt-get install -y software-properties-common python-software-properties'
                 execute_command 'sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y'
                 execute_command 'sudo apt-get update'
                 execute_command 'sudo apt-get install ubuntu-make -y'
@@ -63,14 +64,14 @@ function install_apps {
             exit 1
         fi
         # Install Ruby from source
-        if ! hash ruby 2>/dev/null || [ "$(ruby -e 'puts RUBY_VERSION')" != "2.3.0" ]; then
-            wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.0.tar.gz \
-                && tar zxf ruby-2.3.0.tar.gz \
-                && cd ruby-2.3.0 \
+        if ! hash ruby 2>/dev/null || [ "$(ruby -e 'puts RUBY_VERSION')" != "2.3.3" ]; then
+            wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz \
+                && tar zxf ruby-2.3.3.tar.gz \
+                && cd ruby-2.3.3 \
                 && ./configure \
                 && make \
                 && sudo make install \
-                && cd .. && rm -rf ruby-2.3.0.tar.gz ruby-2.3.0
+                && cd .. && rm -rf ruby-2.3.3.tar.gz ruby-2.3.3
         fi
     else
         echo "Error: Un-expected OS $SYS_OS_NAME"
