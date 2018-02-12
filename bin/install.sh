@@ -25,7 +25,7 @@ function install_dotfiles {
     fi
 
     hash dotfiles 2>/dev/null || \
-        execute_command 'sudo pip install dotfiles==0.6.4' "Installing dotfiles using pip"
+        execute_command 'sudo pip2 install dotfiles==0.6.4' "Installing dotfiles using pip"
 
     dotfiles -R "${REPO_ROOT_DIR}/dotfiles" -sf
     dotfiles -R "${REPO_ROOT_DIR}/dotfiles" -l

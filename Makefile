@@ -1,6 +1,6 @@
 update:
-	@echo "Updating dotfiles/pip/requirements.txt"
-	pip freeze > dotfiles/pip/requirements2.txt
+	@echo "Updating dotfiles/pip/requirements*.txt"
+	pip2 freeze > dotfiles/pip/requirements2.txt
 	pip3 freeze > dotfiles/pip/requirements3.txt
 	@echo "Updating Brewfile"
 	brew bundle dump --global --force

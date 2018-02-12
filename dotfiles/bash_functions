@@ -68,10 +68,10 @@ function execute_command {
 function clone_github_user_repos {
     user=${1-cnadiminti}
     execute_command "mkdir -p $user"
-    last_page=$(curl -Iks https://api.github.com/orgs/"$user"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
+    last_page=$(curl -Iks https://api.github.com/users/"$user"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
     for p in $(seq 1 "$last_page"); do
         print_task "Working on page# $p"
-        for repo in $(curl -ks https://api.github.com/users/"$user"/repos?page="$p" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
+        for repo in $(curl -ks https://api.github.com/users/"$user"/repos?page="$p" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["ssh_url"] }'); do
             execute_command "git -C $user clone -q $repo"
         done
     done
