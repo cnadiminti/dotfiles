@@ -1,0 +1,37 @@
+initscript {
+    // plugins { id 'nebula.lint' version '16.9.1' }
+    buildscript {
+        repositories { jcenter() }
+        dependencies {
+            classpath 'com.netflix.nebula:gradle-lint-plugin:16.9.1'
+        }
+    }
+}
+
+allprojects {
+    // apply plugin: com.netflix.nebula.lint.plugin.GradleLintPlugin   // apply plugin: 'nebula.lint'
+    // gradleLint.alwaysRun = false
+
+    // For some reason, nebula fails for 'deprecated-dependency-configuration' rule with
+    //   ==>  No such property: expression for class: org.codehaus.groovy.ast.stmt.IfStatement
+    //       https://github.com/nebula-plugins/gradle-lint-plugin/issues/307
+    // Until that is fixed lets me use sed and find ;-)
+    task fixGradleDeprecatedDependencyConfigurations {
+        doLast {
+            subprojects.each { p ->
+                println "${p.getProjectDir()} ..."
+                if (new File("${p.getProjectDir()}/build.gradle").exists()) {
+                    exec {
+                        executable "sed"
+                        args "-i", "", '''s/ runtime / runtimeOnly /;
+                     s/ testRuntime / testRuntimeOnly /;
+                     s/ compile / implementation /;
+                     s/ compile(/ implementation(/;
+                     s/ testCompile(/ testImplementation(/;
+                     s/ testCompile / testImplementation /''', "${p.getProjectDir()}/build.gradle"
+                    }
+                }
+            }
+        }
+    }
+}

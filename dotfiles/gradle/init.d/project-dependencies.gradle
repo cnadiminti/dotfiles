@@ -1,0 +1,25 @@
+// https://gist.github.com/nikialeksey/7cefae6b3104ce9a2c765197343bc436
+// Task creates a .dot file with all inter-module dependencies
+// Supports any depth of nested modules
+rootProject {
+    task multiProjectDependencyGraph {
+        doLast {
+            def file = new File("project-dependencies.dot")
+            file.delete()
+            file << "strict digraph {\n"
+            file << "splines=ortho\n"
+            printDeps(file, rootProject)
+            file << "}\n"
+            println "Project dependency graph written to project-dependencies.dot"
+        }
+    }
+}
+// recursively print dependencies to file and move on to child projects
+def printDeps(file, project) {
+    project.configurations
+      .collectMany { it.allDependencies }
+      .findAll { it instanceof ProjectDependency }
+      .each { to -> file << ("\"${project.name}\" -> \"${to.name}\"\n")}
+
+    project.childProjects.each { name, childProject -> printDeps(file, childProject) }
+}
