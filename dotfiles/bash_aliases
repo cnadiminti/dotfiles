@@ -27,19 +27,12 @@ alias h='history'
 alias x='exit'
 alias pyclean='find . -name "*.pyc" -exec rm {} \;'
 alias trimright='sed -ie "s/ \{1,\}$//"'
-if ! hash plantuml 2>/dev/null; then
-    alias plantuml='java -jar ~/Downloads/plantuml.jar'
-fi
 
 alias docker-codeclimate='docker run -it --rm --env CODECLIMATE_CODE="$PWD" -v "$PWD":/code -v /var/run/docker.sock:/var/run/docker.sock -v /tmp/cc:/tmp/cc codeclimate/codeclimate'
-
-alias avro-tools='java -jar ~/Downloads/avro-tools-1.8.1.jar'
-
 alias swagger-editor='docker run -it --rm -p 8080:8080 swaggerapi/swagger-editor'
 alias docker-rake-build='docker run -it --rm -v $(pwd):/root -w /root ruby:2.3 bash -c "bundle install &&  bundle exec rake spec build"'
-alias portainer="docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v ${HOME}/portainer:/data portainer/portainer"
+alias portainer='docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v ${HOME}/portainer:/data portainer/portainer'
 alias docker-on-docker='docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock docker'
-
 alias consul-agent-dev='docker run -d --name consul-agent-dev --rm -p 8500:8500 consul:1.7.3 agent -dev -client=0.0.0.0'
 alias consul='docker exec consul-agent-dev consul'
 alias docker-sonarqube='docker run --rm -p 9000:9000 sonarqube:7.6-community'

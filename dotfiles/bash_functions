@@ -71,7 +71,7 @@ function clone_github_user_repos {
     last_page=$(curl -Iks https://api.github.com/users/"$user"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
     for p in $(seq 1 "$last_page"); do
         print_task "Working on page# $p"
-        for repo in $(curl -ks https://api.github.com/users/"$user"/repos?page="$p" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["ssh_url"] }'); do
+        for repo in $(curl -ks https://api.github.com/users/"$user"/repos?page="$p" | ruby -rrubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["ssh_url"] }'); do
             execute_command "git -C $user clone -q $repo"
         done
     done
@@ -88,19 +88,17 @@ function clone_github_org_repos {
     last_page=$(curl -Iks https://api.github.com/orgs/"$org"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
     for p in $(seq 1 "$last_page"); do
         print_task "Working on page# $p"
-        for repo in $(curl -ks https://api.github.com/orgs/"$org"/repos?page="$p" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
+        for repo in $(curl -ks https://api.github.com/orgs/"$org"/repos?page="$p" | ruby -rrubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
             execute_command "git -C $org clone -q $repo"
         done
     done
 }
 
 function git_project_fetch {
-    for f in $1/*; do
+    for f in "$1"/*; do
         print_task "$f"
-        execute_command "[ -d $f ]" "  Is Directory?" "warning"
-        if [ $? -eq 0 ]; then
-            execute_command "git -C $f rev-parse" "  Is git repo?" "warning"
-            if [ $? -eq 0 ]; then
+        if execute_command "[ -d $f ]" "  Is Directory?" "warning"; then
+            if execute_command "git -C $f rev-parse" "  Is git repo?" "warning"; then
                 execute_command "git -C $f fetch" "  Fetching"
             fi
         fi
@@ -108,12 +106,10 @@ function git_project_fetch {
 }
 
 function git_project_pull {
-    for f in $1/*; do
+    for f in "$1"/*; do
         print_task "$f"
-        execute_command "[ -d $f ]" "  Is Directory?" "warning"
-        if [ $? -eq 0 ]; then
-            execute_command "git -C $f rev-parse" "  Is git repo?" "warning"
-            if [ $? -eq 0 ]; then
+        if execute_command "[ -d $f ]" "  Is Directory?" "warning"; then
+            if execute_command "git -C $f rev-parse" "  Is git repo?" "warning"; then
                 execute_command "git -C $f pull" "  Pulling"
             fi
         fi
@@ -144,9 +140,9 @@ function clone_bitbucket_proj {
     start=0
     while [ "$isLastPage" == "false" ]; do
         json=$(curl -sk -u "${BITBUCKET_USER}:${BITBUCKET_PASS}" -H "Content-Type: application/json" "${BITBUCKET_HOST}/rest/api/1.0/projects/$proj/repos?start=${start}")
-        isLastPage=$(echo "$json" | ruby -rubygems -e 'require "json"; puts JSON.load(STDIN.read)["isLastPage"]')
-        start=$(echo "$json" | ruby -rubygems -e 'require "json"; puts JSON.load(STDIN.read)["nextPageStart"]')
-        for repo in $(echo "$json" | ruby -rubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'); do
+        isLastPage=$(echo "$json" | ruby -rrubygems -e 'require "json"; puts JSON.load(STDIN.read)["isLastPage"]')
+        start=$(echo "$json" | ruby -rrubygems -e 'require "json"; puts JSON.load(STDIN.read)["nextPageStart"]')
+        for repo in $(echo "$json" | ruby -rrubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'); do
             execute_command "git -C $proj clone -q $repo"
         done
     done
@@ -196,18 +192,41 @@ function system_info {
     fi
 }
 
-# Delete all the images with <none> tag
-function docker_rmi_none {
-    for img in $(docker images | grep "<none>" | awk '{ print $3 }'); do
-        echo "$img"
-        docker rmi "$img"
-    done
-}
-
 function brew_cleanup {
     brew cleanup
     brew cask cleanup
     brew uninstall "$(brew list)" || true
     brew cask uninstall "$(brew cask list)" || true
     brew prune
+}
+
+function aws_mfa {
+  if [[ $# -ne 2 ]]; then
+    echo "Usage: $0 <MFA_TOKEN_CODE> <AWS_CLI_PROFILE>"
+    echo "Where:"
+    echo "   <AWS_CLI_PROFILE> = aws-cli profile usually in $HOME/.aws/config"
+    echo "   <MFA_TOKEN_CODE> = Code from virtual MFA device"
+    return
+  fi
+
+  token=$1
+  profile=${2-default}
+  serial_number=$(aws --profile "$profile" iam list-mfa-devices --output text | awk '{print $3}')
+  echo "MFA Device ARN: $serial_number"
+  if [[ -n $token && -n $serial_number ]]; then
+    output=$(aws --profile "$profile" sts get-session-token \
+      --serial-number "$serial_number" \
+      --token-code "$token" \
+      --duration 129600 \
+      --output text |
+      awk '{printf("export AWS_ACCESS_KEY_ID=\"%s\"\nexport AWS_SECRET_ACCESS_KEY=\"%s\"\nexport AWS_SESSION_TOKEN=\"%s\"\nexport AWS_SESSION_TOKEN=\"%s\"\n",$2,$4,$5,$5)}')
+    eval "$output"
+    echo "$output"
+  else
+    echo "TODO: fix it"
+  fi
+}
+
+function jwt_token_decode {
+  jq -R 'split(".") | .[1] | @base64d | fromjson' <<< "$1"
 }
