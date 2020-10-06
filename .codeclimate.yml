@@ -1,9 +1,17 @@
 engines:
   shellcheck:
     enabled: true
+    checks:
+      SC2155:
+        # Disable 'Declare and assign separately to avoid masking return values'
+        enabled: false
   fixme:
     enabled: true
   markdownlint:
     enabled: true
+    checks:
+      MD013:
+        # Disable line-length check
+        enabled: false
 ratings:
   paths:[]

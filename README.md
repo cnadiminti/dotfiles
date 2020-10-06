@@ -49,25 +49,25 @@ I have been using them so far on Ubuntu and Mac OS X.
 - [x] [Docker Desktop](https://www.docker.com/products/docker-desktop) App to build and share containerized applications and microservices
 - [x] [Mozilla Firefox](https://www.mozilla.org/firefox/) Cross-platform web browser
 - [x] [f.lux](https://justgetflux.com/) Screen color temperature controller
-- [x] [Inconsolata](https://fonts.google.com/specimen/Inconsolata) 
+- [x] [Inconsolata](https://fonts.google.com/specimen/Inconsolata)
 - [x] [Google Chrome](https://www.google.com/chrome/) Cross-platform web browser
 - [x] [Hidden Bar](https://github.com/dwarvesf/hidden/) Utility to hide menu bar items
 - [x] [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/) IDE for Java development - community edition
 - [x] [iTerm2](https://www.iterm2.com/) Terminal emulator as alternative to Apple's Terminal app
-- [x] [KDiff3](https://invent.kde.org/sdk/kdiff3) 
-- [x] [Eclipse Memory Analyzer](https://www.eclipse.org/mat/) 
+- [x] [KDiff3](https://invent.kde.org/sdk/kdiff3)
+- [x] [Eclipse Memory Analyzer](https://www.eclipse.org/mat/)
 - [x] [Postman](https://www.postman.com/) Collaboration platform for API development
 - [x] [Jetbrains PyCharm Community Edition](https://www.jetbrains.com/pycharm/) Free and open-source IDE for Python programming - Community Edition
 - [x] [Skype](https://www.skype.com/) Video chat, voice call and instant messaging application
 - [x] [Spectacle](https://www.spectacleapp.com/) Move and resize windows with ease
-- [x] [Vagrant](https://www.vagrantup.com/) 
-- [x] [Oracle VirtualBox](https://www.virtualbox.org/) 
-- [x] [VisualVM](https://visualvm.github.io/) 
+- [x] [Vagrant](https://www.vagrantup.com/)
+- [x] [Oracle VirtualBox](https://www.virtualbox.org/)
+- [x] [VisualVM](https://visualvm.github.io/)
 - [x] [Real VNC Viewer](https://www.realvnc.com/) Remote desktop application focusing on security
 - [x] [WhatsApp](https://www.whatsapp.com/) Desktop client for WhatsApp
 - [x] [Zoom.us](https://www.zoom.us/) Video communication and virtual meeting platform
-- [x] [Azul Zulu Java Standard Edition Development Kit](https://www.azul.com/downloads/zulu/zulu-mac/) 
-- [x] [Azul Zulu Java 8 Standard Edition Development Kit](https://www.azul.com/downloads/zulu/zulu-mac/) 
+- [x] [Azul Zulu Java Standard Edition Development Kit](https://www.azul.com/downloads/zulu/zulu-mac/)
+- [x] [Azul Zulu Java 8 Standard Edition Development Kit](https://www.azul.com/downloads/zulu/zulu-mac/)
 - [x] [ansible](https://www.ansible.com/) Automate deployment, configuration, and upgrading
 - [x] [ant](https://ant.apache.org/) Java build tool
 - [x] [autoconf](https://www.gnu.org/software/autoconf) Automatic configure script builder
