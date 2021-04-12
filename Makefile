@@ -13,7 +13,7 @@ codeclimate:
 
 doc-help:
 	for pkg in `brew list --cask`; do \
-		brew cask info $${pkg} --json=v1 | python3 -c 'import json,sys; obj=json.load(sys.stdin)[0]; print("- [x] [" + obj["name"][0] + "](" + obj["homepage"] + ") " + (obj["desc"] if obj["desc"] != None else ""))';  \
+		brew info $${pkg} --cask --json=v2 | python3 -c 'import json,sys; obj=json.load(sys.stdin)["casks"][0]; print("- [x] [" + obj["name"][0] + "](" + obj["homepage"] + ") " + (obj["desc"] if obj["desc"] != None else ""))';  \
 	done
 	for pkg in `brew leaves`; do \
 		brew info $${pkg} --json=v1 | python3 -c 'import json,sys; obj=json.load(sys.stdin)[0]; print("- [x] [" + obj["full_name"] + "](" + obj["homepage"] + ") " + (obj["desc"] if obj["desc"] != None else ""))'; \
