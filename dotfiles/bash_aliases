@@ -39,9 +39,10 @@ alias docker-sonarqube='docker run --rm -p 9000:9000 sonarqube:7.6-community'
 
 alias gradle-fix-deprecated-dependency-configuration='./gradlew fixGradleLint -PgradleLint.rules=deprecated-dependency-configuration'
 # nebula fails with -- No such property: expression for class: org.codehaus.groovy.ast.stmt.IfStatement
-# until that is fixed lets me use sed and find
+# until that is fixed let me use sed and find
 alias gradle-fix-deprecated-dependency-configuration='./gradlew fixGradleDeprecatedDependencyConfigurations'
 alias gradle-fix-undeclared-dependency='./gradlew fixGradleLint -PgradleLint.rules=undeclared-dependency'
 alias gradle-fix-unused-dependency='./gradlew fixGradleLint -PgradleLint.rules=unused-dependency'
 alias gradle-fix-all-dependency='./gradlew fixGradleLint -PgradleLint.rules=all-dependency'
 alias gradle-multi-project-dependency-graph='./gradlew multiProjectDependencyGraph'
+alias mn-create-app='mn create-app -b gradle -f security,http-client,management --jdk 11 -l java -t junit'

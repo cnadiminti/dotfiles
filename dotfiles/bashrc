@@ -111,10 +111,9 @@ else
 fi
 
 # GO Programming
-mkdir -p "${HOME}/goprojects"
-export GOPATH="${HOME}/goprojects"
-export PATH="$PATH:$GOPATH/bin"
-export GOROOT=/usr/local/opt/go/
+mkdir -p "${HOME}/go"
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 
 # MySQL
 export PATH=$PATH:/Applications/MySQLWorkbench.app/Contents/MacOS
@@ -155,4 +154,9 @@ fi
 export CLOUDSDK_PYTHON="/usr/local/opt/python/libexec/bin/python"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 

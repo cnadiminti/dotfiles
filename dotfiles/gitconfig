@@ -1,5 +1,6 @@
 [core]
 	excludesfile = ~/.gitignore
+	autocrlf = input
 [color]
 	ui = true
 [http]
@@ -20,4 +21,6 @@
 [difftool "intellij"]
 	cmd = /usr/local/bin/idea diff $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")
 
-
+[user]
+	name = Chandra Nadiminti
+	email = 8633814+cnadiminti@users.noreply.github.com

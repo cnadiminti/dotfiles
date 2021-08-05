@@ -11,6 +11,10 @@ rootProject {
             printDeps(file, rootProject)
             file << "}\n"
             println "Project dependency graph written to project-dependencies.dot"
+            exec {
+                commandLine 'dot', '-Tsvg', 'project-dependencies.dot', '-o', 'project-dependencies.svg'
+            }
+            println "Project dependency graph written to project-dependencies.svg"
         }
     }
 }

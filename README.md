@@ -45,20 +45,20 @@ I have been using them so far on Ubuntu and Mac OS X.
 - [x] [Adobe Acrobat Reader DC](https://acrobat.adobe.com/us/en/acrobat/pdf-reader.html) View, print, and comment on PDF documents
 - [x] [Github Atom](https://atom.io/) Text editor
 - [x] [Etcher](https://balena.io/etcher) Tool to flash OS images to SD cards & USB drives
-- [x] [DBeaver Community Edition](https://dbeaver.io/) Free universal database tool and SQL client
+- [x] [DBeaver Community Edition](https://dbeaver.io/) Universal database tool and SQL client
 - [x] [Docker Desktop](https://www.docker.com/products/docker-desktop) App to build and share containerized applications and microservices
 - [x] [Mozilla Firefox](https://www.mozilla.org/firefox/) Web browser
 - [x] [f.lux](https://justgetflux.com/) Screen color temperature controller
 - [x] [Inconsolata](https://fonts.google.com/specimen/Inconsolata)
-- [x] [Google Backup and Sync](https://www.google.com/drive/download/)
+- [x] [Google Backup and Sync](https://www.google.com/drive/download/) Back up and sync files with Google Drive
 - [x] [Google Chrome](https://www.google.com/chrome/) Web browser
 - [x] [Google Cloud SDK](https://cloud.google.com/sdk/) Set of tools to manage resources and applications hosted on Google Cloud
 - [x] [Hidden Bar](https://github.com/dwarvesf/hidden/) Utility to hide menu bar items
 - [x] [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/) IDE for Java development - community edition
 - [x] [iTerm2](https://www.iterm2.com/) Terminal emulator as alternative to Apple's Terminal app
-- [x] [KDiff3](https://invent.kde.org/sdk/kdiff3)
+- [x] [KDiff3](https://invent.kde.org/sdk/kdiff3) Utility for comparing and merging files and directories
 - [x] [Postman](https://www.postman.com/) Collaboration platform for API development
-- [x] [Jetbrains PyCharm Community Edition](https://www.jetbrains.com/pycharm/) Free and open-source IDE for Python programming - Community Edition
+- [x] [Jetbrains PyCharm Community Edition](https://www.jetbrains.com/pycharm/) IDE for Python programming - Community Edition
 - [x] [Skype](https://www.skype.com/) Video chat, voice call and instant messaging application
 - [x] [Spectacle](https://www.spectacleapp.com/) Move and resize windows with ease
 - [x] [Vagrant](https://www.vagrantup.com/) Development environment
@@ -68,14 +68,14 @@ I have been using them so far on Ubuntu and Mac OS X.
 - [x] [Real VNC Viewer](https://www.realvnc.com/) Remote desktop application focusing on security
 - [x] [WhatsApp](https://www.whatsapp.com/) Desktop client for WhatsApp
 - [x] [Zoom.us](https://www.zoom.us/) Video communication and virtual meeting platform
-- [x] [Azul Zulu Java Standard Edition Development Kit](https://www.azul.com/downloads/zulu/zulu-mac/)
-- [x] [Azul Zulu Java 8 Standard Edition Development Kit](https://www.azul.com/downloads/zulu/zulu-mac/)
+- [x] [Azul Zulu Java Standard Edition Development Kit](https://www.azul.com/products/core/) OpenJDK distribution from Azul
+- [x] [Azul Zulu Java 8 Standard Edition Development Kit](https://www.azul.com/) OpenJDK distribution from Azul
 - [x] [ansible](https://www.ansible.com/) Automate deployment, configuration, and upgrading
 - [x] [ant](https://ant.apache.org/) Java build tool
 - [x] [avro-tools](https://avro.apache.org/) Avro command-line tools and utilities
 - [x] [awscli](https://aws.amazon.com/cli/) Official Amazon AWS command-line interface
-- [x] [bash](https://www.gnu.org/software/bash/) Bourne-Again SHell, a UNIX command interpreter
 - [x] [brew-cask-completion](https://github.com/xyb/homebrew-cask-completion) Fish completion for brew-cask
+- [x] [clang-format](https://clang.llvm.org/docs/ClangFormat.html) Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 - [x] [cmake](https://www.cmake.org/) Cross-platform make
 - [x] [consul-template](https://github.com/hashicorp/consul-template) Generic template rendering and notifications with Consul
 - [x] [coreutils](https://www.gnu.org/software/coreutils) GNU File, Shell, and Text utilities
@@ -89,6 +89,8 @@ I have been using them so far on Ubuntu and Mac OS X.
 - [x] [gradle](https://www.gradle.org/) Open-source build automation tool based on the Groovy and Kotlin DSL
 - [x] [gradle-completion](https://gradle.org/) Bash and Zsh completion for Gradle
 - [x] [grc](http://kassiopeia.juls.savba.sk/~garabik/software/grc.html) Colorize logfiles and command output
+- [x] [grpc](https://grpc.io/) Next generation open source RPC library and framework
+- [x] [grpcurl](https://github.com/fullstorydev/grpcurl) Like cURL, but for gRPC
 - [x] [helmsman](https://github.com/Praqma/helmsman) Helm Charts as Code tool
 - [x] [httrack](https://www.httrack.com/) Website copier/offline browser
 - [x] [ipcalc](http://jodies.de/ipcalc) Calculate various network masks, etc. from a given IP address
@@ -102,13 +104,15 @@ I have been using them so far on Ubuntu and Mac OS X.
 - [x] [maven-completion](https://github.com/juven/maven-bash-completion) Bash completion for Maven
 - [x] [micronaut](https://micronaut.io/) Modern JVM-based framework for building modular microservices
 - [x] [minikube](https://minikube.sigs.k8s.io/) Run a Kubernetes cluster locally
-- [x] [node](https://nodejs.org/) Platform built on V8 to build network applications
+- [x] [nvm](https://github.com/nvm-sh/nvm) Manage multiple Node.js versions
 - [x] [ossp-uuid](https://web.archive.org/web/www.ossp.org/pkg/lib/uuid/) ISO-C API and CLI for generating UUIDs
 - [x] [packer](https://packer.io) Tool for creating identical machine images for multiple platforms
 - [x] [packer-completion](https://github.com/mrolli/packer-bash-completion) Bash completion for Packer
 - [x] [pip-completion](https://github.com/ekalinin/pip-bash-completion) Bash completion for Pip
 - [x] [plantuml](https://plantuml.com/) Draw UML diagrams
+- [x] [postgresql](https://www.postgresql.org/) Object-relational database system
 - [x] [pstree](http://www.thp.uni-duisburg.de/pstree/) Show ps output as a tree
+- [x] [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) Pyenv plugin to manage virtualenv
 - [x] [ruby](https://www.ruby-lang.org/) Powerful, clean, object-oriented scripting language
 - [x] [sbt](https://www.scala-sbt.org/) Build tool for Scala projects
 - [x] [scala](https://www.scala-lang.org/) JVM-based programming language
@@ -120,11 +124,14 @@ I have been using them so far on Ubuntu and Mac OS X.
 - [x] [telnet](https://opensource.apple.com/) User interface to the TELNET protocol
 - [x] [terminal-notifier](https://github.com/julienXX/terminal-notifier) Send macOS User Notifications from the command-line
 - [x] [terraform](https://www.terraform.io/) Tool to build, change, and version infrastructure
+- [x] [terraformer](https://github.com/GoogleCloudPlatform/terraformer) CLI tool to generate terraform files from existing infrastructure
 - [x] [tree](http://mama.indstate.edu/users/ice/tree/) Display directories as trees (with optional color/HTML output)
 - [x] [vagrant-completion](https://github.com/hashicorp/vagrant) Bash completion for Vagrant
 - [x] [weaveworks/tap/eksctl](https://eksctl.io/) The official CLI for Amazon EKS
 - [x] [wget](https://www.gnu.org/software/wget/) Internet file retriever
 - [x] [wrk](https://github.com/wg/wrk) HTTP benchmarking tool
+- [x] [yarn](https://yarnpkg.com/) JavaScript package manager
+- [x] [yarn-completion](https://github.com/dsifford/yarn-completion) Bash completion for Yarn
 - [x] [yq](https://github.com/mikefarah/yq) Process YAML documents from the CLI
 
 ## Install
