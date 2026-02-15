@@ -9,11 +9,12 @@
 	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
 	local-commits = log --oneline --decorate --branches --not --remotes=origin
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
 	required = true
+	process = git-lfs filter-process
 [credential]
-	helper = osxkeychain
+	helper = 
 	useHttpPath = true
 [diff]
 	tool = intellij
@@ -24,3 +25,14 @@
 [user]
 	name = Chandra Nadiminti
 	email = 8633814+cnadiminti@users.noreply.github.com
+
+# Load personal/company-specific git configuration
+[include]
+    path = ~/.gitconfig.local
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

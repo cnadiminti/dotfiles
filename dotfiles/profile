@@ -23,3 +23,9 @@ if [ -d "$HOME/bin" ] ; then
 fi
 # Ubuntu make installation of Ubuntu Make binary symlink
 PATH="$HOME/.local/share/umake/bin:$PATH"
+
+# Created by `pipx`
+export PATH="$PATH:$HOME/.local/bin"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/cnadimin/.lmstudio/bin"

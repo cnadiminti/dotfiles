@@ -4,40 +4,38 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# ============================================================================
+# CORE SHELL SETTINGS
+# ============================================================================
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# default Editor
+# Default editor
 export EDITOR=vi
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# History configuration
+HISTCONTROL=ignoreboth      # Don't save duplicates or commands starting with space
+HISTSIZE=1000               # Commands in memory
+HISTFILESIZE=2000           # Commands in history file
+shopt -s histappend         # Append to history file, don't overwrite
 
-# append to the history file, don't overwrite it
-shopt -s histappend
+# Shell behavior options
+shopt -s checkwinsize       # Update LINES and COLUMNS after each command
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
+# Make less more friendly for non-text input files
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
+# ============================================================================
+# PROMPT CONFIGURATION
+# ============================================================================
+
+# Debian chroot identification
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
+# Color prompt setup
 case "$TERM" in
     xterm-color|xterm-256color)
         color_prompt=yes
@@ -45,16 +43,9 @@ case "$TERM" in
         ;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
 force_color_prompt=yes
-
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-    # We have color support; assume it's compliant with Ecma-48
-    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-    # a case would tend to support setf rather than setaf.)
         color_prompt=yes
     else
         color_prompt=
@@ -68,35 +59,51 @@ else
 fi
 unset color_prompt force_color_prompt
 
-# If this is an xterm set the title to user@host:dir
+# Set xterm title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
 esac
 
-# Extra prompt for OpenStack
-PROMPT_COMMAND='if [ -n "$OS_AUTH_URL" ]; then echo [$(echo $OS_AUTH_URL)]; fi'
+# OpenStack environment indicator
+PROMPT_COMMAND="if [ -n \"\$OS_AUTH_URL\" ]; then echo [\$(echo \$OS_AUTH_URL)]; fi"
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
+# Alert alias for long-running commands (use like: sleep 10; alert)
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# ============================================================================
+# PACKAGE MANAGERS & CORE SYSTEM
+# ============================================================================
+
+# Homebrew and MacPorts
+export PATH="/opt/homebrew/bin:/opt/local/bin:$PATH"
+export PATH="/opt/homebrew/opt/bison/bin:$PATH"  # Override system bison
+
+# User-local binaries (pipx, etc.)
+export PATH="$PATH:$HOME/.local/bin"
+
+# ============================================================================
+# PLATFORM-SPECIFIC CONFIGURATION
+# ============================================================================
 
 # MAC OS X
 if [ "$(uname -s)" = "Darwin" ]; then
+	  eval "$(brew shellenv)"
+    # Cache brew --prefix for performance (avoids 200-400ms per call)
+    if command -v brew >/dev/null 2>&1; then
+        HOMEBREW_PREFIX="$(brew --prefix)"
+    fi
     alias alert='terminal-notifier -message "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-    # GRC
-    if [ -r "$(brew --prefix)"/etc/grc.bashrc ]; then
+
+    # macOS-specific PATH additions
+    export PATH="$PATH:/Applications/IntelliJ IDEA.app/Contents/MacOS"
+
+    # GRC (generic colouriser)
+    if [ -r "${HOMEBREW_PREFIX}/etc/grc.bashrc" ]; then
         # shellcheck source=/dev/null
-        source "$(brew --prefix)/etc/grc.bashrc"
+        source "${HOMEBREW_PREFIX}/etc/grc.bashrc"
     fi
-    if [ -r "$(brew --prefix)"/etc/bash_completion ]; then
-        # shellcheck source=/dev/null
-        source "$(brew --prefix)"/etc/bash_completion
-    fi
-    PATH="$PATH:/Applications/Eclipse.app/Contents/MacOS"
 else
 # Linux
     # enable programmable completion features (you don't need to enable
@@ -106,17 +113,60 @@ else
         # shellcheck source=/dev/null
         source /etc/bash_completion
     fi
-    # Latest Eclipse on Ubuntu
-    PATH="$PATH:${HOME}/.local/share/umake/ide/eclipse"
 fi
 
-# GO Programming
+# ============================================================================
+# DEVELOPMENT TOOLS
+# ============================================================================
+
+# Docker
+export PATH="$PATH:$HOME/.docker/bin"
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
+export DOCKER_HOST="unix://$HOME/.docker/run/docker.sock"
+export DOCKER_CLI_HINTS=false
+
+# Go
 mkdir -p "${HOME}/go"
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export GO111MODULE=on
+export PATH="$PATH:$GOPATH/bin"
 
-# MySQL
-export PATH=$PATH:/Applications/MySQLWorkbench.app/Contents/MacOS
+# Java (use jdk11/jdk17/jdk21 functions from bash_functions to switch versions)
+if [ -x /usr/libexec/java_home ]; then
+    JAVA_HOME="$(/usr/libexec/java_home)"
+    export JAVA_HOME
+fi
+
+# Node.js (nvm)
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+# Kubernetes
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"  # krew plugin manager
+
+# Vagrant
+export PATH="/opt/vagrant-vmware-desktop/bin:$PATH"
+
+# MySQL Workbench
+export PATH="$PATH:/Applications/MySQLWorkbench.app/Contents/MacOS"
+
+# ============================================================================
+# AI/ML TOOLS
+# ============================================================================
+
+# Claude Code
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=64000
+
+# Windsurf (Codeium)
+export PATH="${HOME}/.codeium/windsurf/bin:$PATH"
+
+# LM Studio
+export PATH="$PATH:${HOME}/.lmstudio/bin"
+
+# ============================================================================
+# CUSTOM FUNCTIONS AND ALIASES
+# ============================================================================
 
 # Function definitions.
 # You may want to put all your additions into a separate file like
@@ -135,28 +185,49 @@ if [ -r "${HOME}/.bash_aliases" ]; then
      source "${HOME}/.bash_aliases"
 fi
 
-# And finally,
-# You may want to put Other 'private-stuff' like passwords/tokens/...
-# ${HOME}/.bash_personal, instead of adding them here directly.
-if [ -r "${HOME}/.bash_personal" ]; then
+# Company/personal configurations (gitignored)
+# Put passwords, tokens, company-specific aliases/functions here
+if [ -r "${HOME}/.bashrc.local" ]; then
     # shellcheck source=/dev/null
-     source "${HOME}/.bash_personal"
+     source "${HOME}/.bashrc.local"
 fi
 
-#if hash jenv 2>/dev/null; then
-#    eval "$(jenv init -)"
-#fi
+# ============================================================================
+# SHELL COMPLETIONS
+# ============================================================================
 
-if [ -x /usr/libexec/java_home ]; then
-    export JAVA_HOME="$(/usr/libexec/java_home)"
+# Homebrew bash completions (HOMEBREW_PREFIX cached in Darwin section)
+if [[ -n "${HOMEBREW_PREFIX}" ]]; then
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    # shellcheck source=/dev/null
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      # shellcheck source=/dev/null
+      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+    done
+  fi
 fi
 
-export CLOUDSDK_PYTHON="/usr/local/opt/python/libexec/bin/python"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+# Kubectl (Kubernetes CLI)
+if command -v kubectl >/dev/null 2>&1; then
+    # shellcheck source=/dev/null
+    source <(kubectl completion bash)
+    alias k=kubectl
+    complete -F __start_kubectl k
+fi
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# 1Password CLI
+# shellcheck source=/dev/null
+command -v op >/dev/null 2>&1 && source <(op completion bash)
+
+# GitLab CLI
+# shellcheck source=/dev/null
+command -v glab >/dev/null 2>&1 && source <(glab completion -s bash)
+
+# Google Cloud SDK
+if [[ -n "${HOMEBREW_PREFIX}" && -r "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc" ]]; then
+    # shellcheck source=/dev/null
+    source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
+fi
 

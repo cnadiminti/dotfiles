@@ -96,3 +96,7 @@ Thumbs.db
 
 # Idea
 .idea
+
+### Claude Code
+.claude/settings.local.json
+CLAUDE.local.md

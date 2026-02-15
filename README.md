@@ -152,8 +152,32 @@ cd dotfiles/bin
 ./install.sh -a
 ```
 
+## Personal Configuration
+
+Keep company-specific configs separate using `*.local` files (gitignored):
+
+- `~/.bashrc.local` - Company aliases/functions/exports (auto-sourced by bashrc)
+- `~/.Brewfile.local` - Internal taps/packages (`brew bundle --file=~/.Brewfile.local`)
+- `~/.gitconfig.local` - Personal git config (add `[include] path = ~/.gitconfig.local` if needed)
+
+These files are never committed to the public repo.
+
+## Testing
+
+Use the Makefile to test installation:
+
+```sh
+make test-all            # Run all tests (shellcheck + Alpine + Ubuntu + macOS)
+make test-macos-dryrun   # Test on macOS (dry-run, safe to run)
+make test-alpine         # Test in Alpine Linux container
+make test-ubuntu         # Test in Ubuntu container
+make shellcheck          # Lint all shell scripts
+make update              # Update Brewfile from installed packages
+```
+
+All tests include assertions and idempotency checks. Standard Docker images used - no build steps required!
+
 ## References
 
 - [Unofficial guide to dotfiles on GitHub](https://dotfiles.github.io)
 - [python-dotfiles](https://github.com/shanx/python-dotfiles)
-- [Eclipse Oomph Authoring Guide](https://wiki.eclipse.org/Eclipse_Oomph_Authoring)

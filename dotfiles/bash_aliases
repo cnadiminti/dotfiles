@@ -8,9 +8,6 @@ if [ -x /usr/bin/dircolors ]; then
         eval "$(dircolors -b)"
     fi
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -35,14 +32,20 @@ alias portainer='docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/doc
 alias docker-on-docker='docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock docker'
 alias consul-agent-dev='docker run -d --name consul-agent-dev --rm -p 8500:8500 consul:1.7.3 agent -dev -client=0.0.0.0'
 alias consul='docker exec consul-agent-dev consul'
-alias docker-sonarqube='docker run --rm -p 9000:9000 sonarqube:7.6-community'
+alias docker-sonarqube='docker run --rm -p 9000:9000 sonarqube:8.9-community'
 
 alias gradle-fix-deprecated-dependency-configuration='./gradlew fixGradleLint -PgradleLint.rules=deprecated-dependency-configuration'
-# nebula fails with -- No such property: expression for class: org.codehaus.groovy.ast.stmt.IfStatement
-# until that is fixed let me use sed and find
-alias gradle-fix-deprecated-dependency-configuration='./gradlew fixGradleDeprecatedDependencyConfigurations'
 alias gradle-fix-undeclared-dependency='./gradlew fixGradleLint -PgradleLint.rules=undeclared-dependency'
 alias gradle-fix-unused-dependency='./gradlew fixGradleLint -PgradleLint.rules=unused-dependency'
 alias gradle-fix-all-dependency='./gradlew fixGradleLint -PgradleLint.rules=all-dependency'
 alias gradle-multi-project-dependency-graph='./gradlew multiProjectDependencyGraph'
 alias mn-create-app='mn create-app -b gradle -f security,http-client,management --jdk 11 -l java -t junit'
+
+## #################
+## Splunk
+## #################
+alias splunk-enterprise-docker='docker run --rm -p 8000:8000 -e "SPLUNK_PASSWORD=password" \
+    -e "SPLUNK_START_ARGS=--accept-license" \
+    -it --name so1 splunk/splunk:latest'
+alias langflow-docker="docker run -it --rm -p 7860:7860 -e DO_NOT_TRACK=true langflowai/langflow:latest"
+alias kgp='watch kubectl get pods --sort-by=.metadata.creationTimestamp'

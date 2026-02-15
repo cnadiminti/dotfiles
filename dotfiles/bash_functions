@@ -65,95 +65,45 @@ function execute_command {
 }
 
 # Usage example: clone_github_user_repos cnadiminti
-function clone_github_user_repos {
-    user=${1-cnadiminti}
-    execute_command "mkdir -p $user"
-    last_page=$(curl -Iks https://api.github.com/users/"$user"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
-    for p in $(seq 1 "$last_page"); do
-        print_task "Working on page# $p"
-        for repo in $(curl -ks https://api.github.com/users/"$user"/repos?page="$p" | ruby -rrubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["ssh_url"] }'); do
-            execute_command "git -C $user clone -q $repo"
-        done
-    done
-}
+# Execute a git operation on all repositories in a directory
+# Usage: git_project_op <operation> <directory> <operation_label>
+# Example: git_project_op fetch ~/projects "Fetching"
+function git_project_op {
+    local operation="$1"
+    local directory="$2"
+    local label="$3"
 
-# Usage example: clone_github_org_repos sensu
-function clone_github_org_repos {
-    org=$1
-    if [ -z "$org" ] ; then
-          print_info 'Usage: clone_github_org_repos [ORG-NAME]'
-          return
+    if [[ -z "$operation" || -z "$directory" ]]; then
+        echo "Usage: git_project_op <operation> <directory> [label]"
+        return 1
     fi
-    execute_command "mkdir -p $org"
-    last_page=$(curl -Iks https://api.github.com/orgs/"$org"/repos | grep Link: | awk -F'=|>' '{ print $5 }')
-    for p in $(seq 1 "$last_page"); do
-        print_task "Working on page# $p"
-        for repo in $(curl -ks https://api.github.com/orgs/"$org"/repos?page="$p" | ruby -rrubygems -e 'require "json"; JSON.load(STDIN.read).each { |repo| puts repo["clone_url"] }'); do
-            execute_command "git -C $org clone -q $repo"
-        done
+
+    for f in "$directory"/*; do
+        print_task "$f"
+        if execute_command "[ -d \"$f\" ]" "  Is Directory?" "warning"; then
+            if execute_command "git -C \"$f\" rev-parse" "  Is git repo?" "warning"; then
+                execute_command "git -C \"$f\" ${operation}" "  ${label:-${operation^}}"
+            fi
+        fi
     done
 }
 
 function git_project_fetch {
-    for f in "$1"/*; do
-        print_task "$f"
-        if execute_command "[ -d $f ]" "  Is Directory?" "warning"; then
-            if execute_command "git -C $f rev-parse" "  Is git repo?" "warning"; then
-                execute_command "git -C $f fetch" "  Fetching"
-            fi
-        fi
-    done
+    git_project_op fetch "$1" "Fetching"
 }
 
 function git_project_pull {
-    for f in "$1"/*; do
-        print_task "$f"
-        if execute_command "[ -d $f ]" "  Is Directory?" "warning"; then
-            if execute_command "git -C $f rev-parse" "  Is git repo?" "warning"; then
-                execute_command "git -C $f pull" "  Pulling"
-            fi
-        fi
-    done
-}
-
-function clone_bitbucket_proj {
-    proj=$1
-    if [ -z "$proj" ] ; then
-          print_info 'Usage: clone_bitbucket_proj [PROJECT-NAME]'
-          return
-    fi
-    if [ -z "$BITBUCKET_HOST" ]; then
-        echo -n "Please enter your Bitbucket Host: "
-        read -r BITBUCKET_HOST
-    fi
-    if [ -z "$BITBUCKET_USER" ]; then
-        echo -n "Please enter your Bitbucket Username: "
-        read -r BITBUCKET_USER
-    fi
-    if [ -z "$BITBUCKET_PASS" ]; then
-        echo -n "Please enter your Bitbucket Password: "
-        read -sr BITBUCKET_PASS
-        echo ''
-    fi
-    execute_command "mkdir -p $proj"
-    isLastPage=false
-    start=0
-    while [ "$isLastPage" == "false" ]; do
-        json=$(curl -sk -u "${BITBUCKET_USER}:${BITBUCKET_PASS}" -H "Content-Type: application/json" "${BITBUCKET_HOST}/rest/api/1.0/projects/$proj/repos?start=${start}")
-        isLastPage=$(echo "$json" | ruby -rrubygems -e 'require "json"; puts JSON.load(STDIN.read)["isLastPage"]')
-        start=$(echo "$json" | ruby -rrubygems -e 'require "json"; puts JSON.load(STDIN.read)["nextPageStart"]')
-        for repo in $(echo "$json" | ruby -rrubygems -e 'require "json"; JSON.load(STDIN.read)["values"].each { |repo| repo["links"]["clone"].each { |url|  puts url["href"] if (url["name"] = "ssh" and url["href"].match('/^ssh/')) }}'); do
-            execute_command "git -C $proj clone -q $repo"
-        done
-    done
+    git_project_op pull "$1" "Pulling"
 }
 
 function system_info {
-    export SYS_OS_NAME=$(uname -s)
-    export SYS_OS_RELEASE=$(uname -r)
-    export SYS_OS_VERSION=$(uname -v)
-    export SYS_HARDWARE_NAME=$(uname -m)
-    export SYS_PROCESSOR_TYPE=$(uname -p)
+    # Separate declare and assign for proper error handling (SC2155)
+    SYS_OS_NAME=$(uname -s)
+    SYS_OS_RELEASE=$(uname -r)
+    SYS_OS_VERSION=$(uname -v)
+    SYS_HARDWARE_NAME=$(uname -m)
+    SYS_PROCESSOR_TYPE=$(uname -p)
+    export SYS_OS_NAME SYS_OS_RELEASE SYS_OS_VERSION SYS_HARDWARE_NAME SYS_PROCESSOR_TYPE
 
     if [ "${SYS_OS_NAME}" = "Linux" ] ; then
         if [ -f /etc/redhat-release ]; then
@@ -167,16 +117,20 @@ function system_info {
         fi
 
         if [ -r /etc/os-release ] ; then
+            # Separate declare and assign for proper error handling (SC2155)
             # shellcheck disable=SC1091
-            export SYS_OS_DIST_NAME=$(source /etc/os-release && echo "$NAME")
+            SYS_OS_DIST_NAME=$(source /etc/os-release && echo "$NAME")
             # shellcheck disable=SC1091
-            export SYS_OS_DIST_ID=$(source /etc/os-release && echo "$ID")
+            SYS_OS_DIST_ID=$(source /etc/os-release && echo "$ID")
             # shellcheck disable=SC1091
-            export SYS_OS_DIST_VERSION=$(source /etc/os-release && echo "$VERSION_ID")
+            SYS_OS_DIST_VERSION=$(source /etc/os-release && echo "$VERSION_ID")
+            export SYS_OS_DIST_NAME SYS_OS_DIST_ID SYS_OS_DIST_VERSION
         fi
     elif [ "${SYS_OS_NAME}" = "Darwin" ]; then
-        export SYS_OS_DIST_ID=$(sw_vers | grep ProductName | sed 's/ProductName:[ ]*//' | xargs)
-        export SYS_OS_DIST_VERSION=$(sw_vers | grep ProductVersion | sed 's/ProductVersion:[ ]*//'| xargs)
+        # Separate declare and assign for proper error handling (SC2155)
+        SYS_OS_DIST_ID=$(sw_vers | grep ProductName | sed 's/ProductName:[ ]*//' | xargs)
+        SYS_OS_DIST_VERSION=$(sw_vers | grep ProductVersion | sed 's/ProductVersion:[ ]*//'| xargs)
+        export SYS_OS_DIST_ID SYS_OS_DIST_VERSION
     fi
 
     if [ "$1" = "-v" ]; then
@@ -193,11 +147,13 @@ function system_info {
 }
 
 function brew_cleanup {
-    brew cleanup
-    brew cask cleanup
-    brew uninstall "$(brew list)" || true
-    brew cask uninstall "$(brew cask list)" || true
-    brew prune
+    # Clean up outdated downloads and prune old versions
+    # --prune=all removes all cache files older than specified days (default: 120 days)
+    brew cleanup --prune=all
+
+    # Alternatively, for more aggressive cleanup:
+    # brew cleanup -s  # Scrub cache (removes ALL downloads)
+    # brew autoremove  # Remove unused dependencies
 }
 
 function aws_mfa {
@@ -209,11 +165,12 @@ function aws_mfa {
     return
   fi
 
-  token=$1
-  profile=${2-default}
+  local token=$1
+  local profile=${2-default}
+  local serial_number
   serial_number=$(aws --profile "$profile" iam list-mfa-devices --output text | awk '{print $3}')
   echo "MFA Device ARN: $serial_number"
-  if [[ -n $token && -n $serial_number ]]; then
+  if [[ -n "$token" && -n "$serial_number" ]]; then
     output=$(aws --profile "$profile" sts get-session-token \
       --serial-number "$serial_number" \
       --token-code "$token" \
@@ -228,5 +185,106 @@ function aws_mfa {
 }
 
 function jwt_token_decode {
+  echo '== Header =='
+  jq -R 'split(".") | .[0] | @base64d | fromjson' <<< "$1"
+  echo '== Payload =='
   jq -R 'split(".") | .[1] | @base64d | fromjson' <<< "$1"
+}
+
+function mvn_dependency_tree {
+  mvn dependency:tree -Dverbose -Dincludes="$1"
+}
+
+function nvd-download-feed() {
+  [ -f nvd-feed.ndjson ] && rm -f nvd-feed.ndjson
+  local startIndex=0
+  local resultsPerPage=2000
+  local resp totalResults
+  while true; do
+    echo "$startIndex $resultsPerPage ..."
+    resp=$(curl -s "https://services.nvd.nist.gov/rest/json/cves/2.0?startIndex=$startIndex&resultsPerPage=$resultsPerPage")
+    echo "$resp" | jq -c '.vulnerabilities[]' >> nvd-feed.ndjson
+
+    totalResults=$(echo "$resp" | jq -r .totalResults)
+    resultsPerPage=$(echo "$resp" | jq -r .resultsPerPage)
+    startIndex=$(( $(echo "$resp" | jq .startIndex) + resultsPerPage))
+    if [[ $startIndex -ge $totalResults ]]; then
+      break
+    fi
+    # https://nvd.nist.gov/developers/start-here
+    sleep 10 #6
+  done
+}
+
+# Switch JDK versions using macOS java_home utility
+# Usage: jdk_switch <version>
+# Example: jdk_switch 17
+function jdk_switch {
+    if [[ $# -ne 1 ]]; then
+        echo "Usage: jdk_switch <version>"
+        echo "Example: jdk_switch 17"
+        return 1
+    fi
+
+    local version="$1"
+    # Separate declare and assign for proper error handling (SC2155)
+    JAVA_HOME="$(/usr/libexec/java_home --version "${version}" 2>/dev/null)"
+
+    if [[ -z "$JAVA_HOME" ]]; then
+        echo "Error: JDK version ${version} not found"
+        return 1
+    fi
+
+    export JAVA_HOME
+    echo "Switched to JDK ${version}: ${JAVA_HOME}"
+    java -version
+}
+
+# Convenience aliases for common JDK versions
+alias jdk11='jdk_switch 11'
+alias jdk17='jdk_switch 17'
+alias jdk21='jdk_switch 21'
+alias jdk="env | grep JAVA_HOME"
+alias git-clean="git clean -fdx -e \*.iml -e \*.idea -e \*.yml -e \*.properties"
+
+function claude-install-knowledge-work() {
+  echo "Installing knowledge work plugins..."
+  # run it in project scope only from a dedicated directory/project by the user
+  echo "Please run it in project scope only from a dedicated directory/project by the user"
+  claude plugin marketplace add anthropics/knowledge-work-plugins
+  claude plugin install cowork-plugin-management@knowledge-work-plugins -s project
+  claude plugin install productivity@knowledge-work-plugins -s project
+  claude plugin install product-management@knowledge-work-plugins -s project
+}
+
+function claude-update() {
+  brew upgrade claude-login
+  brew upgrade claude-code
+
+  claude plugin marketplace add anthropics/claude-plugins-official
+  claude plugin marketplace add anthropics/skills
+
+  claude plugin install gopls-lsp@claude-plugins-official
+  claude plugin install jdtls-lsp@claude-plugins-official
+  claude plugin install typescript-lsp@claude-plugins-official
+  claude plugin install pyright-lsp@claude-plugins-official
+
+  claude plugin install claude-code-setup@claude-plugins-official
+  claude plugin install claude-md-management@claude-plugins-official
+  claude plugin install agent-sdk-dev@claude-plugins-official
+  claude plugin install feature-dev@claude-plugins-official
+  claude plugin install plugin-dev@claude-plugins-official
+
+  claude plugin install ralph-loop@claude-plugins-official
+  claude plugin install code-simplifier@claude-plugins-official
+  claude plugin install code-review@claude-plugins-official
+  claude plugin install pr-review-toolkit@claude-plugins-official
+
+  claude plugin install explanatory-output-style@claude-plugins-official
+
+  claude plugin install document-skills@anthropic-agent-skills
+  claude plugin install example-skills@anthropic-agent-skills
+
+  claude plugin marketplace update
+  claude plugin marketplace list
 }

@@ -2,76 +2,82 @@
 
 set -e
 
+# Dry-run mode - set to true to see what would be executed without running commands
+DRY_RUN="${DRY_RUN:-false}"
+
+# Ensure bash is the default shell (only change if needed)
+# Check if shell is any bash variant (/bin/bash, /opt/homebrew/bin/bash, etc.)
+if [[ "$SHELL" == *"bash"* ]]; then
+    echo "✓ Shell is already bash ($SHELL)"
+elif command -v chsh >/dev/null 2>&1; then
+    if [ "$DRY_RUN" = "true" ]; then
+        echo "[DRY-RUN] Would run: chsh -s /bin/bash (current: $SHELL)"
+    else
+        chsh -s /bin/bash
+    fi
+fi
+
 REPO_ROOT_DIR="$(dirname "$0")/.."
 
 function install_dotfiles {
     if [ "$SYS_OS_NAME" = "Darwin" ] ; then
-        hash brew 2>/dev/null || \
-            ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        brew install python
-    elif [ "$SYS_OS_NAME" = "Linux" ] ; then
-        if [ "$SYS_OS_TYPE" = "debian" ] ; then
-            execute_command 'sudo apt-get install python-pip -y'
-        elif [ "$SYS_OS_TYPE" = "redhat" ] ; then
-            execute_command 'sudo yum -y install epel-release'
-            execute_command 'sudo yum -y install python-pip'
+        # Ensure Homebrew is installed
+        if ! hash brew 2>/dev/null; then
+            if [ "$DRY_RUN" = "true" ]; then
+                echo "[DRY-RUN] Would install Homebrew"
+            else
+                /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+            fi
         else
-            echo "Error: Un-expected Linux distribution"
-            exit 1
+            echo "✓ Homebrew already installed"
         fi
+    elif [ "$SYS_OS_NAME" = "Linux" ] ; then
+        # No additional dependencies needed for dotfiles symlinking
+        :
     else
         echo "Error: Un-expected OS $SYS_OS_NAME"
         exit 1
     fi
 
-    hash dotfiles 2>/dev/null || \
-        execute_command 'sudo pip3 install dotfiles==0.6.4' "Installing dotfiles using pip"
-
-    dotfiles -R "${REPO_ROOT_DIR}/dotfiles" -sf
-    dotfiles -R "${REPO_ROOT_DIR}/dotfiles" -l
+    # Use our custom bash symlinking script (no Python dependencies)
+    if [ "$DRY_RUN" = "true" ]; then
+        echo "[DRY-RUN] Would run: ${REPO_ROOT_DIR}/bin/symlink-dotfiles.sh"
+        DRY_RUN=true "${REPO_ROOT_DIR}/bin/symlink-dotfiles.sh"
+    else
+        "${REPO_ROOT_DIR}/bin/symlink-dotfiles.sh"
+    fi
 }
 
 function install_apps {
     # Install all the basic tools and apps
     if [ "$SYS_OS_NAME" = "Darwin" ] ; then
-        brew update
-        brew upgrade
-        brew bundle --global
+        if [ "$DRY_RUN" = "true" ]; then
+            echo "[DRY-RUN] Would run: brew update"
+            echo "[DRY-RUN] Would run: brew upgrade"
+            echo "[DRY-RUN] Would run: brew bundle --global"
+        else
+            brew update
+            brew upgrade
+            brew bundle --global
+        fi
     elif [ "$SYS_OS_NAME" = "Linux" ] ; then
         if [ "$SYS_OS_TYPE" = "debian" ] ; then
+            # Core development tools
             execute_command 'sudo apt-get install -y grc wget git bash-completion'
             execute_command 'sudo apt-get install -y fonts-inconsolata'
             execute_command 'sudo apt-get install -y libnotify-bin'
-            execute_command 'sudo apt-get install -y gcc'
+            execute_command 'sudo apt-get install -y build-essential'
             execute_command 'sudo apt-get install -y golang'
-            # TODO: update the list
-            if ! hash eclipse 2>/dev/null; then
-                execute_command 'sudo apt-get install -y software-properties-common python-software-properties'
-                execute_command 'sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make -y'
-                execute_command 'sudo apt-get update'
-                execute_command 'sudo apt-get install ubuntu-make -y'
-                execute_command "umake ide eclipse ${HOME}/.local/share/umake/ide/eclipse"
-            fi
         elif [ "$SYS_OS_TYPE" = "redhat" ] ; then
+            # Core development tools
             execute_command 'sudo yum -y install grc wget git bash-completion'
             execute_command 'sudo yum -y install levien-inconsolata-fonts'
             execute_command 'sudo yum -y install libnotify'
-            execute_command 'sudo yum -y install gcc'
+            execute_command 'sudo yum -y install gcc make'
             execute_command 'sudo yum -y install golang'
-            # TODO: update the list
         else
             echo "Error: Un-expected Linux distribution $SYS_OS_TYPE"
             exit 1
-        fi
-        # Install Ruby from source
-        if ! hash ruby 2>/dev/null || [ "$(ruby -e 'puts RUBY_VERSION')" != "2.3.3" ]; then
-            wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz \
-                && tar zxf ruby-2.3.3.tar.gz \
-                && cd ruby-2.3.3 \
-                && ./configure \
-                && make \
-                && sudo make install \
-                && cd .. && rm -rf ruby-2.3.3.tar.gz ruby-2.3.3
         fi
     else
         echo "Error: Un-expected OS $SYS_OS_NAME"
@@ -83,8 +89,9 @@ function usage {
     echo "Usage: $(basename "$0") [OPTIONS]" 1>&2
     echo '' 1>&2
     echo OPTIONS 1>&2
-    echo '    -a, --all   install all' 1>&2
-    echo '    --help      display this help and exit' 1>&2
+    echo '    -a, --all       install all' 1>&2
+    echo '    --dry-run       show what would be executed without running' 1>&2
+    echo '    --help          display this help and exit' 1>&2
     exit 1
 }
 
@@ -97,6 +104,9 @@ for arg in "$@"; do
     case "$arg" in
         -a|--all)
             install_all=true
+            ;;
+        --dry-run)
+            DRY_RUN=true
             ;;
         --help)
             usage
